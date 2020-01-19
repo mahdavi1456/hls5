@@ -1,0 +1,43 @@
+@font-face {
+    font-family: titr;
+    src: url('../fonts/titrbold/titrbold.eot');
+    src: url('../fonts/titrbold/titrbold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/titrbold/titrbold.woff') format('woff'),
+        url('../fonts/titrbold/titrbold.ttf') format('truetype');
+    font-weight: normal;
+}
+@font-face {
+    font-family: koodak;
+    src: url('../fonts/koodakbold/koodakbold.eot');
+    src: url('../fonts/koodakbold/koodakbold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/koodakbold/koodakbold.woff') format('woff'),
+        url('../fonts/koodakbold/koodakbold.ttf') format('truetype');
+    font-weight: normal;
+}
+@media print{
+	.titr, .titr *{
+		font-family: titr!important;
+	}
+	.koodak, .koodak *{
+		font-family: koodak!important;
+	}
+	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+		border: 2px solid #000!important;
+	}
+	.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+		font-size: 26px!important;
+	}
+	.table-bordered h4{ font-size: 26px!important; }
+	a[href]:after {
+		content: none !important;
+	}
+	.m500{
+		width: 100%!important;
+		max-height: 100%!important;
+		overflow: hidden!important;
+	}
+	.well-lg { 
+		padding: 0!important;
+	}
+	body{ margin: 0!important; padding: 0!important; }
+}

@@ -1,0 +1,6 @@
+#myForm input + span, #myForm textarea + span{
+	font-size: 12px;
+    color: red;
+	position: absolute;
+    left: 30px;
+}
