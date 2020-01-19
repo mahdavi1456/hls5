@@ -11,8 +11,8 @@ class database
             $password = $this->get_db_arg($account_id, 'a_db_password');
         } else {
             $dbname = 'helisoft_auth';
-            $username = 'helisoft_auth_user';
-            $password = '-GO3tKEheH[@';
+            $username = 'root';
+            $password = '';
 		}
 		$pdo_conn = new PDO("mysql:host=localhost;dbname=$dbname;charset=utf8", "$username", "$password",
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
@@ -23,8 +23,8 @@ class database
 	public function sudo_get_connection_string()
     {
         $dbname = 'helisoft_auth';
-        $username = 'helisoft_auth_user';
-        $password = '-GO3tKEheH[@';
+        $username = 'root';
+        $password = '';
 		
 		$pdo_conn = new PDO("mysql:host=localhost;dbname=$dbname;charset=utf8", "$username", "$password",
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
@@ -69,8 +69,8 @@ class database
     public function check_login($username, $password)
     {
         $dbname = 'helisoft_auth';
-        $db_username = 'helisoft_auth_user';
-        $db_password = '-GO3tKEheH[@';
+        $db_username = 'root';
+        $db_password = '';
         $pdo_conn = new PDO("mysql:host=localhost;dbname=" . $dbname . ";charset=utf8", $db_username, $db_password,
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
         $sql = "select a_id from account where a_username = '$username' and a_password = '$password'";
@@ -100,8 +100,8 @@ class database
     public function get_db_arg($account_id, $arg)
     {
         $dbname = 'helisoft_auth';
-        $username = 'helisoft_auth_user';
-        $password = '-GO3tKEheH[@';
+        $username = 'root';
+        $password = '';
         $pdo_conn = new PDO("mysql:host=localhost;dbname=" . $dbname . ";charset=utf8", $username, $password,
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
         $sql = "select $arg from account where a_id = $account_id";
@@ -118,8 +118,8 @@ class database
 	public function get_accounts()
     {
         $dbname = 'helisoft_auth';
-        $db_username = 'helisoft_auth_user';
-        $db_password = '-GO3tKEheH[@';
+        $db_username = 'root';
+        $db_password = '';
         $pdo_conn = new PDO("mysql:host=localhost;dbname=" . $dbname . ";charset=utf8", $db_username, $db_password,
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
         $sql = "select * from account";

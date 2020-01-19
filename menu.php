@@ -19,7 +19,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
                     <li class="nav-header">عملیات</li>
-                    <li class="nav-item has-treeview <?php if ($basename == 'fullday' || $basename == 'fullpay' || $basename == 'fullfactor') echo 'menu-open'; ?>">
+                    <li class="nav-item has-treeview <?php if ($basename == 'fullday' || $basename == 'fullpay' || $basename == 'fullfactor' || $basename == 'person-report') echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
@@ -44,6 +44,12 @@
                                 <a href="<?php echo VIEW_URL; ?>report/fullfactor.php" class="nav-link <?php if($basename == 'fullfactor') echo 'active'; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>گزارش فاکتور روز</p>
+                                </a>
+                            </li>
+							<li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>report/person-report.php" class="nav-link <?php if($basename == 'person-report') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>گزارش حساب اشخاص</p>
                                 </a>
                             </li>
                         </ul>

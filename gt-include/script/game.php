@@ -50,7 +50,7 @@ if(isset($_POST['set_vip'])) {
 
 if(isset($_POST['set_login'])) {
     $db = new database();
-    $p_code = trim($_POST['p_code'], '0');
+    $p_code = ltrim($_POST['p_code'], '0');
 	if($p_code != "") {
 		$p_id = $db->get_var_query("select p_id from person where p_code = '$p_code'");
 	} else {

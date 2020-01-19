@@ -1,16 +1,16 @@
 <?php session_start();
 define('site_name', 'helisoft');
 
-define('ASSET_DIR', 'http://new.heliapp.ir/gt-content/asset/');
-define('ASSET_URL', 'http://new.heliapp.ir/gt-content/asset/');
+define('ASSET_DIR', 'http://localhost:8080/hls5/gt-content/asset/');
+define('ASSET_URL', 'http://localhost:8080/hls5/gt-content/asset/');
 
-define('VIEW_DIR', 'http://new.heliapp.ir/gt-content/view/');
-define('VIEW_URL', 'http://new.heliapp.ir/gt-content/view/');
+define('VIEW_DIR', 'http://localhost:8080/hls5/gt-content/view/');
+define('VIEW_URL', 'http://localhost:8080/hls5/gt-content/view/');
 
-define('ROOT_URL', 'http://new.heliapp.ir/');
-define('ROOT_DIR', 'http://new.heliapp.ir/');
+define('ROOT_URL', 'http://localhost:8080/hls5/');
+define('ROOT_DIR', 'http://localhost:8080/hls5/');
 define('INC_DIR', 'gt-include/');
-define('INC_URL', 'http://new.heliapp.ir/gt-include/');
+define('INC_URL', 'http://localhost:8080/hls5/gt-include/');
 
 define('LIB_DIR', 'gt-include/lib/');
 
@@ -36,3 +36,4 @@ include INC_DIR . "class/modal.php";
 include INC_DIR . "class/offer.php";
 include INC_DIR . "class/payment.php";
 include INC_DIR . "class/book.php";
+include INC_DIR . "class/report.php";
