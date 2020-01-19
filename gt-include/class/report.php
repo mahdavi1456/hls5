@@ -4,7 +4,7 @@ class report
 {
     public function table_fullday($load)
     { ?>
-		<table class="table table-striped">
+		<table class="table table-striped" style="width:100%">
 			<tr>
 				<th>#</th>
 				<th>شخص</th>

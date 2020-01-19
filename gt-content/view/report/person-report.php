@@ -19,18 +19,20 @@
 							<div class="card-tools">
 								<form action="" method="get">
 									<div class="input-group input-group-sm">
-										<select id="p_id" name="p_id" class="form-control">
-											<?php
-											$res = $db->get_select_query("select p_id, p_name, p_family from person");
-											if(count($res) > 0) {
-												foreach($res as $row) {
-													?>
-													<option value="<?php echo $row['p_id']; ?>" <?php if(isset($_GET['p_id']) && $_GET['p_id'] == $row['p_id']) { echo 'selected'; } ?> ><?php echo $row['p_name'] . " " . $row['p_family']; ?></option>
-													<?php
+										<div id="login-p-name-container" class="col-md-9 text-center">
+											<select id="p_id" name="p_id" class="form-control select2">
+												<?php
+												$res = $db->get_select_query("select p_id, p_name, p_family from person");
+												if(count($res) > 0) {
+													foreach($res as $row) {
+														?>
+														<option value="<?php echo $row['p_id']; ?>" <?php if(isset($_GET['p_id']) && $_GET['p_id'] == $row['p_id']) { echo 'selected'; } ?> ><?php echo $row['p_name'] . " " . $row['p_family']; ?></option>
+														<?php
+													}
 												}
-											}
-											?>
-										</select>
+												?>
+											</select>
+										</div>
 										<div class="input-group-append">
 											<button name="search" type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 										</div>
