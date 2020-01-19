@@ -54,7 +54,7 @@ class report
 					$sql = "select * from game where p_id = $p_id order by g_id desc";
 				} else {
 					$today = jdate('Y-m-d');
-					$sql = "select * from game order by g_id desc";
+					$sql = "select * from game where p_id = -1 order by g_id desc";
 				}
 			}
 			$res = $db->get_select_query($sql);
@@ -219,7 +219,7 @@ class report
 					$p_id = $_GET['p_id'];
 					$sql = "select * from payment where p_id = $p_id order by pa_id desc";
 				} else {
-					$sql = "select * from payment order by pa_id desc";
+					$sql = "select * from payment where p_id = -1 order by pa_id desc";
 				}
 			}
 			$res = $db->get_select_query($sql);
@@ -295,7 +295,7 @@ class report
 					$p_id = $_GET['p_id'];
 					$sql = "select * from factor where p_id = $p_id order by f_id desc";
 				} else {
-					$sql = "select * from factor order by f_id desc";
+					$sql = "select * from factor where p_id = -1 order by f_id desc";
 				}
 			}
 			$res = $db->get_select_query($sql);
