@@ -46,7 +46,7 @@
 									<div class="card-header bg-info">
 										<h3 class="card-title">گزارش ورود</h3>
 									</div>
-									<div class="card-body">
+									<div class="card-body p-0">
 										<div class="card-body table-responsive p-0">
 											<?php echo $report->table_fullday(2); ?>
 										</div>
@@ -63,7 +63,7 @@
 									<div class="card-header bg-success">
 										<h3 class="card-title">گزارش مالی</h3>
 									</div>
-									<div class="card-body">
+									<div class="card-body p-0">
 										<div class="card-body table-responsive p-0">
 											<?php
 											echo $report->table_fullpay(2); ?>
@@ -76,7 +76,7 @@
 									<div class="card-header bg-warning">
 										<h3 class="card-title">گزارش فاکتور</h3>
 									</div>
-									<div class="card-body">
+									<div class="card-body p-0">
 										<div class="card-body table-responsive p-0">
 											<?php echo $report->table_fullfactor('2'); ?>
 										</div>
