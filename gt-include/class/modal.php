@@ -44,7 +44,7 @@ class modal
 								$this->ajax_person_modal();
 								break;
 							case "user_activity":
-								$this->user_activity();
+								$this->user_activity($g_id);
 								break;
 							case "course_ticket":
 								$this->course_ticket();
@@ -231,34 +231,33 @@ class modal
 		<?php
 	}
 	
-	public function pay_modal($g_id, $pa_price)
+	public function pay_modal($g_id = 0, $pa_price = 0)
 	{
 		$db = new database();
 		
 		$pa_details = $db->get_var_query("select g_type from game where g_id = $g_id");
-		$p_id = $db->get_var_query("select p_id from game where g_id = $g_id");
-		?>
+		$p_id = $db->get_var_query("select p_id from game where g_id = $g_id"); ?>
 		<div class="row">
-            <input type="hidden" id="pay_p_id" value="<?php echo $p_id; ?>">
+			<input type="hidden" id="pay_p_id" value="<?php echo $p_id; ?>">
 			<div class="col-md-6 col-sm-12 col-xs-12">
-                <label>نوع پرداخت</label>
-                <select id="pa_type" class="form-control">
-                    <option value="کارت">کارت</option>
-                    <option value="نقد">نقد</option>
-                </select>
-            </div>
+				<label>نوع پرداخت</label>
+				<select id="pa_type" class="form-control">
+					<option value="کارت">کارت</option>
+					<option value="نقد">نقد</option>
+				</select>
+			</div>
 			<div class="col-md-6 col-sm-12 col-xs-12">
-                <label>مبلغ</label>
-                <input style="direction: ltr;" type="text" class="form-control" id="pa_price" value="<?php echo $pa_price; ?>">
-            </div><br>
-			<div class="col-12">
-				<br><button id="pay" class="btn btn-success">ثبت پرداخت</button>
+				<label>مبلغ</label>
+				<input style="direction: ltr;" type="text" class="form-control" id="pa_price" value="<?php echo $pa_price; ?>">
 			</div>
-			<input type="hidden" id="pa_details" value="<?php echo $pa_details; ?>">
-			<div class="col-12">
-				<br><div id="pay-result"></div>
-			</div>
-        </div>
+			<input type="hidden" id="pa_details" value="<?php echo $pa_details; ?>"><br>
+		</div>
+		<div class="col-12">
+			<br><button id="pay" class="btn btn-success">ثبت پرداخت</button>
+		</div>
+		<div class="col-12">
+			<br><div id="pay-result"></div>
+		</div>
 		<?php
 	}
 	
@@ -272,7 +271,7 @@ class modal
 		<?php
 	}
 	
-	public function user_activity()
+	public function user_activity($g_id)
 	{
 		$db = new database();
 		

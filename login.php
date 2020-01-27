@@ -50,9 +50,15 @@
                         <div class="alert alert-danger text-center">نام کاربری یا رمز وارد شده صحیح نمی باشد</div>
                         <?php
                     } else {
-						$user = new user();
+						
+						$sql = "select * from user where u_username = '$username' and u_password = '$password' and a_id = $st";
+						$res = $db->get_select_query($sql, 1);
 						$_SESSION['account_id'] = $st;
-						$_SESSION['user_id'] = $st;
+						if(count($res) > 0) {
+							foreach($res as $row) {
+								$_SESSION['user_id'] = $row['u_id'];
+							}
+						}
 						echo '<script> window.location = "index.php"; </script>';
                     }
                 }

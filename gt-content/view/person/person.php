@@ -64,45 +64,7 @@
             </script>
             <?php
         }
-		if(isset($_POST['set_sharj'])){
-			$p_id = $_POST['p_id'];
-			$p_pack = $_POST['p_pack'];
-			
-			$last_expire = $db->get_var_query("select p_expire from person where p_id = $p_id");
-			$last_sharj = $db->get_var_query("select p_sharj from person where p_id = $p_id");
-			
-			$now = jdate('Y/m/d');
-				
-			$db->ex_query("update person set p_pack = $p_pack where p_id = $p_id");
-				
-			if(isset($_POST['p_expire']) && $_POST['p_expire']!=""){
-				$p_expire = $gd->add_to_datee($now, $_POST['p_expire']);
-				$db->ex_query("update person set p_expire = '$p_expire' where p_id = $p_id");
-			}
-			
-			if(isset($_POST['p_sharj']) && $_POST['p_sharj']!=""){
-				$ps = $_POST['p_sharj'];
-				$db->ex_query("update person set p_sharj = $ps where p_id = $p_id");				
-			}
-				
-			if(isset($_POST['pa_price']) && $_POST['pa_price']!="" && isset($_POST['pa_type']) && $_POST['pa_type']!=""){
-				$pa_date = jdate('Y/m/d');
-				$pa_details = $_POST['p_sharj'] . " دقیقه شارژ و " . $_POST['p_expire'] . " روز اعتبار";
-				$pa_price = $_POST['pa_price'];
-				$pa_type = $_POST['pa_type'];
-				$pa_status = 1;
-				$db->ex_query("insert into payment(p_id, pa_price, pa_date, pa_details, pa_type, pa_status) values($p_id, '$pa_price', '$pa_date', '$pa_details', '$pa_type', $pa_status) ");
-			}
-			?><br>
-			<div class="alert alert-success">
-				حساب کاربری شخص مورد نظر با موفقیت شارژ شد
-			</div>
-			<script type="text/javascript">
-				window.location.reload();
-				return;
-			</script>
-			<?php
-		}
+
 		?>
 		</div>
         <section class="content">
@@ -283,71 +245,6 @@
 																		<input style="width: 100%!important" name="p_code" class="form-control" placeholder="اینجا کلیک کنید سپس کارت را به دستگاه نزدیک کنید"><br>
 																		<button name="save-card" class="btn btn-success">ذخیره</button>
 																		<input type="hidden" name="p_id" value="<?php echo $row['p_id']; ?>">
-																	</form>
-																	<hr>
-																	<form action="" method="post">
-																		<div class="row">
-																		<?php
-																		$p_id = $row['p_id'];
-																		$sharj = $db->get_var_query("select p_sharj from person where p_id = $p_id");
-																		$expire = $db->get_var_query("select p_expire from person where p_id = $p_id");
-																		$pack = $db->get_var_query("select p_pack from person where p_id = $p_id");
-																		if($pack==0)
-																			$pack_name = "آزاد";
-																		else
-																			$pack_name = $db->get_var_query("select pk_name from package where pk_id = $pack");
-																		?>
-																			<div class="col-md-3">
-																				<div class="alert alert-warning"><h4 style="margin: 0">شارژ: <?php echo $prime->per_number($gd->convert_time($sharj)); ?></h4></div>
-																			</div>
-																			<div class="col-md-5">
-																				<div class="alert alert-warning"><h4 style="margin: 0">اعتبار: <?php echo $prime->per_number($expire); ?></h4></div>
-																			</div>
-																			<div class="col-md-4">
-																				<div class="alert alert-warning">
-																					<h4 style="margin: 0">
-																					<?php echo $prime->per_number($pack_name); ?>
-																					<select name="p_pack" class="form-control pk_id" data-id="<?php echo $row['p_id']; ?>">
-																						<option selected>انتخاب بسته</option>
-																						<?php
-																						$res2 = $db->get_select_query("select * from package");
-																						if(count($res2)) {
-																							foreach($res2 as $row2) {
-																							?>
-																							<option <?php if($row2['pk_id']==$pack){ echo "selected"; } ?> value="<?php echo $row2['pk_id']; ?>"><?php echo $row2['pk_name']; ?></option>
-																							<?php
-																							}	
-																						}
-																						?>
-																					</select>
-																					</h4>
-																				</div>
-																			</div>
-																		</div>
-																		<div class="row">	
-																			<div class="col-md-4">
-																				<label>میزان دقیقه</label>
-																				<input id="bp_time<?php echo $row['p_id']; ?>" name="p_sharj" type="text" class="form-control" placeholder="میزان دقیقه">
-																			</div>
-																			<div class="col-md-4">
-																				<label>مدت اعتبار</label>
-																				<input id="bp_expire<?php echo $row['p_id']; ?>" name="p_expire" type="text" class="form-control" placeholder="مدت اعتبار">
-																			</div>
-																			<div class="col-md-4">
-																				<label>مبلغ</label>
-																				<input id="bp_price<?php echo $row['p_id']; ?>" name="pa_price" type="text" class="form-control" placeholder="مبلغ">
-																			</div>
-																			<input type="hidden" name="pa_type" value="فاکتور سیستم">
-																			<input type="hidden" name="p_id" value="<?php echo $row['p_id']; ?>">
-																		</div>
-																		<br>	
-																		<div class="row">
-																			<div class="col-md-12">
-																				<button name="set_sharj" class="btn btn-success btn-lg">
-																					<span class="glyphicon glyphicon-ok"></span> شارژ اشتراک
-																				</button>
-																			</div>
-																		</div>
 																	</form>
 																</div>
                                                                 <div class="modal-footer">

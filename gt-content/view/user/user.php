@@ -6,17 +6,18 @@
     <div class="content-wrapper">
         <br>
         <?php
+		$a_id = $_SESSION['account_id'];
 		$aru = new aru();
         if(isset($_POST['add-user'])){
-            $aru->add("user", $_POST);
+            $aru->add("user", $_POST, 1);
         }
         if(isset($_POST['del-user'])){
             $u_id = $_POST['del-user'];
-            $aru->remove("user", "u_id", $u_id, "int");
+            $aru->remove("user", "u_id", $u_id, "int", 1);
         }
         if(isset($_POST['update-user'])){
             $u_id = $_GET['edit-user'];
-            $aru->update("user", $_POST, "u_id", $u_id);
+            $aru->update("user", $_POST, "u_id", $u_id, 1);
         }
         if(isset($_GET['edit-user'])){
             $eu = $_GET['edit-user'];
@@ -34,37 +35,39 @@
                             </div>
                             <div class="card-body">
                                 <form class="form-horizontal" method="post">
+									<input type="hidden" name="a_id" value="<?php echo $a_id; ?>">
                                     <div class="col-sm-12">
                                         <label class="control-label">نام</label>
-                                        <input name="u_name" value="<?php echo $aru->field_for_edit("user", "u_name", "u_id", $eu); ?>" type="text" class="form-control" placeholder="نام">
+                                        <input name="u_name" value="<?php echo $aru->field_for_edit("user", "u_name", "u_id", $eu , 1); ?>" type="text" class="form-control" placeholder="نام">
                                     </div><br>
                                     <div class="col-sm-12">
                                         <label class="control-label">نام خانوادگی</label>
-                                        <input name="u_family" value="<?php echo $aru->field_for_edit("user", "u_family", "u_id", $eu); ?>" type="text" class="form-control" placeholder="نام خانوادگی">
+                                        <input name="u_family" value="<?php echo $aru->field_for_edit("user", "u_family", "u_id", $eu, 1); ?>" type="text" class="form-control" placeholder="نام خانوادگی">
                                     </div><br>
                                     <div class="col-sm-12">
                                         <label class="control-label">کد پرسنلی</label>
-                                        <input name="u_code" value="<?php echo $aru->field_for_edit("user", "u_code", "u_id", $eu); ?>" type="text" class="form-control" placeholder="کد پرسنلی">
+                                        <input name="u_code" value="<?php echo $aru->field_for_edit("user", "u_code", "u_id", $eu, 1); ?>" type="text" class="form-control" placeholder="کد پرسنلی">
                                     </div><br>
                                     <div class="col-sm-12">
                                         <label class="control-label">نام کاربری</label>
-                                        <input name="u_username" value="<?php echo $aru->field_for_edit("user", "u_username", "u_id", $eu); ?>" type="text" class="form-control" placeholder="نام کاربری">
+                                        <input name="u_username" value="<?php echo $aru->field_for_edit("user", "u_username", "u_id", $eu, 1); ?>" type="text" class="form-control" placeholder="نام کاربری">
                                     </div><br>
                                     <div class="col-sm-12">
                                         <label class="control-label">رمز ورود</label>
-                                        <input name="u_password" value="<?php echo $aru->field_for_edit("user", "u_password", "u_id", $eu); ?>" type="password" class="form-control" placeholder="رمز ورود">
+                                        <input name="u_password" value="<?php echo $aru->field_for_edit("user", "u_password", "u_id", $eu, 1); ?>" type="password" class="form-control" placeholder="رمز ورود">
                                     </div><br>
-                                    <?php $u_level = $aru->field_for_edit("user", "u_level", "u_id", $eu);  ?>
+                                    <?php $u_level = $aru->field_for_edit("user", "u_level", "u_id", $eu, 1);  ?>
                                     <div class="col-sm-12">
                                         <label class="control-label">سطح دسترسی</label>
                                         <select name="u_level" class="form-control">
                                             <option <?php if($u_level=="مدیر")echo "selected"; ?>>مدیر</option>
                                             <option <?php if($u_level=="مالی")echo "selected"; ?>>مالی</option>
+											<option <?php if($u_level=="اپراتور")echo "selected"; ?>>اپراتور</option>
                                         </select>
                                     </div><br>
                                     <div class="col-sm-12">
                                         <label class="control-label">رمز ورود</label>
-                                        <input name="u_mobile" value="<?php echo $aru->field_for_edit("user", "u_mobile", "u_id", $eu); ?>" type="text" class="form-control" placeholder="موبایل">
+                                        <input name="u_mobile" value="<?php echo $aru->field_for_edit("user", "u_mobile", "u_id", $eu, 1); ?>" type="text" class="form-control" placeholder="موبایل">
                                     </div><br>
                                     <div class="col-ms-10">
                                         <?php
@@ -103,7 +106,7 @@
                                     $db = new database();
                                     $prime = new prime();
                                     $i = 1;
-                                    $list = $db->get_select_query("select * from user");
+                                    $list = $db->get_select_query("select * from user where a_id = $a_id" , 1);
                                     if(count($list)>0){
                                         foreach($list as $l){ ?>
                                             <tr>

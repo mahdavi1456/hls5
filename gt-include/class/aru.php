@@ -30,7 +30,7 @@ class aru
 		}
 	}
 
-	public function field_by_type($table, $field, $column, $value, $type)
+	public function field_by_type($table, $field, $column, $value, $type, $sudo = 0)
     {
         $db = new database();
 		if($type == "int"){
@@ -38,7 +38,12 @@ class aru
 		}else if($type == "string"){	
 			$sql = "select $field from $table where $column = '$value'";
 		}
-		$res = $db->get_var_query($sql);
+		if($sudo == 1) {
+			$res = $db->get_var_query($sql, 1);
+		}
+		else {
+			$res = $db->get_var_query($sql);
+		}
 		if($res){
 			return $res;
 		}else{
@@ -46,7 +51,7 @@ class aru
 		}
 	}
 
-	public function remove($table, $column, $value, $type)
+	public function remove($table, $column, $value, $type, $sudo = 0)
     {
         $db = new database();
 		if($type == "int"){
@@ -54,7 +59,12 @@ class aru
 		}else if($type == "string"){
 			$sql = "delete from $table where $column = '$value'";
 		}
-		$db->ex_query($sql);
+		if($sudo == 1) {
+			$db->ex_query($sql, 1);
+		}
+		else {
+			$db->ex_query($sql);
+		}
 		echo "<meta http-equiv='refresh' content='0'/>";
 		?><br>
 		<div class="alert alert-success">مورد با موفقیت حذف شد</div>
@@ -65,7 +75,7 @@ class aru
 	<?php
 	}
 
-	public function add($table, $array)
+	public function add($table, $array, $sudo = 0)
     {
         $prime = new prime();
         $db = new database();
@@ -94,11 +104,16 @@ class aru
 		$sql_key .= ")";
 		$sql_value .= ")";
 		$sql .= $sql_key . $sql_value;
-		$last_id = $db->ex_query($sql);
+		if($sudo == 1) {
+			$last_id = $db->ex_query($sql, 1);
+		} 
+		else {
+			$last_id = $db->ex_query($sql);
+		}
 		return $last_id;
 	}
 
-	public function update($table, $array, $wfield, $wvalue)
+	public function update($table, $array, $wfield, $wvalue , $sudo = 0)
     {
         $prime = new prime();
         $db = new database();
@@ -124,7 +139,12 @@ class aru
 		}
 		$sql_str .= " where $wfield = $wvalue";
 		$sql .= $sql_str;
-		$db->ex_query($sql);
+		if($sudo == 1) {
+			$db->ex_query($sql, 1);
+		}
+		else {
+			$db->ex_query($sql);
+		}
 		?>
 		<br>
 		<div class="alert alert-success">
@@ -137,8 +157,13 @@ class aru
 		<?php
 	}
 
-	public function field_for_edit($table, $field, $column, $value){
-		$out = $this->field_by_type($table, $field, $column, $value, "int");
+	public function field_for_edit($table, $field, $column, $value , $sudo = 0){
+		if($sudo == 1) {
+			$out = $this->field_by_type($table, $field, $column, $value, "int", 1);
+		} 
+		else {
+			$out = $this->field_by_type($table, $field, $column, $value, "int");
+		}
 		return $out;
 	}
 	

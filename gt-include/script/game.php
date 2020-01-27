@@ -63,6 +63,7 @@ if(isset($_POST['set_login'])) {
 		$g_count = $_POST['g_count'];
 		$g_in = jdate('H:i');
 		$g_date = jdate('Y/m/d');
+		$u_id = $_SESSION['user_id'];
 		if($_POST['g_adj'] != "") {
 			$g_adj = implode(', ', $_POST['g_adj']);
 		} else {
@@ -74,7 +75,7 @@ if(isset($_POST['set_login'])) {
 		if(count($check) > 0) {
 			echo "<br><div class='alert alert-danger'>شما یک ورود دارید که هنوز خروج آن ثبت نشده است</div>";
 		} else {
-			$sql = "insert into game(p_id, g_type, g_count, g_in, g_date, g_adjective) values($p_id, '$g_type', $g_count, '$g_in', '$g_date', '$g_adj')";
+			$sql = "insert into game(p_id, g_type, g_count, g_in, g_date, g_adjective, u_id) values($p_id, '$g_type', $g_count, '$g_in', '$g_date', '$g_adj', $u_id)";
 			$g_id = $db->ex_query($sql);
 			$gm_key = "count";
 			$gm_value = $g_count;

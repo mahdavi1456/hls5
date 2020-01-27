@@ -2,7 +2,9 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-	<?php include "../../../nav.php"; include"../../../menu.php"; ?>
+	<?php
+	include "../../../nav.php"; include"../../../menu.php"; 
+	$a_id = $_SESSION['account_id']; ?>
 
 	<div class="content-wrapper">
 		<br>
@@ -20,7 +22,7 @@
 											$db = new database();
 											$user = new user();
 								
-											$res = $db->get_select_query("select * from user");
+											$res = $db->get_select_query("select * from user where a_id = $a_id", 1);
 											if(count($res) > 0) {
 												foreach($res as $row) { ?>
 											<option value="<?php echo $row['u_id']; ?>" <?php if(isset($_GET['u_id']) && $_GET['u_id'] == $row['u_id']) echo "selected"; ?>><?php echo $user->get_user_name($row['u_id']) . " " . $user->get_user_family($row['u_id']); ?></option>

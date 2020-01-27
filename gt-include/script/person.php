@@ -54,10 +54,17 @@ if(isset($_POST['load_person_edit_form'])) {
 if(isset($_POST['get_package_info'])){
 	$db = new database();
 	$pk_id = $_POST['pk_id'];
-	$res = $db->get_select_query("select * from package where pk_id = $pk_id");
-	$pk_time = $res[0]['pk_time'];
-	$pk_expire = $res[0]['pk_expire'];
-	$pk_price = $res[0]['pk_price'];
+	if($pk_id != 0){
+		$res = $db->get_select_query("select * from package where pk_id = $pk_id");
+		$pk_time = $res[0]['pk_time'];
+		$pk_expire = $res[0]['pk_expire'];
+		$pk_price = $res[0]['pk_price'];
+	}
+	else {
+		$pk_time = "";
+		$pk_expire = "";
+		$pk_price = "";
+	}
 	echo $pk_time . "," . $pk_expire . "," . $pk_price;
 	exit();
 }

@@ -3,7 +3,39 @@
 class report
 {
     public function table_fullday($load)
-    { ?>
+    {
+		
+		if(isset($_POST['edit'])){
+			$db = new database();
+			$g_id = $_POST['g_id'];
+			$g_in = $_POST['g_in'];
+			$g_out = $_POST['g_out'];
+			$g_total = $_POST['g_total'];
+			$g_total_price = $_POST['g_total_price'];
+			$g_total_vip = $_POST['g_total_vip'];
+			$g_total_vip_price = $_POST['g_total_vip_price'];
+			$g_extra = $_POST['g_extra'];
+			$g_extra_price = $_POST['g_extra_price'];
+			$g_login_price = $_POST['g_login_price'];
+			$g_used_sharj = $_POST['g_used_sharj'];
+			$g_total_shop = $_POST['g_total_shop'];
+			$g_offer_price = $_POST['g_offer_price'];
+			
+			$db->ex_query("update game set g_offer_price = $g_offer_price, g_total_shop = $g_total_shop, g_used_sharj = $g_used_sharj, g_login_price = $g_login_price, g_extra_price = $g_extra_price, g_in = '$g_in', g_out = '$g_out', g_total = $g_total, g_total_price = $g_total_price, g_total_vip = $g_total_vip, g_total_vip_price = $g_total_vip_price, g_extra = $g_extra where g_id = $g_id");				
+			
+			?><br>
+			<div class="alert alert-success">
+				گزارش با موفقیت ویرایش شد
+			</div>
+			<script type="text/javascript">
+				//window.location.href = 'person-report.php?p_id=' + <?php echo $_POST['p_id']; ?> + '&search=' + <?php echo ""; ?>;
+				window.location.reload();
+				return;
+			</script>
+			<?php
+		}
+		
+		?>
 		<table class="table table-striped">
 			<tr>
 				<th>#</th>
@@ -41,7 +73,7 @@ class report
 						$today = $g_from_date;
 						$sql = "select * from game where g_date like '%$today%' and g_status = 1 order by g_id desc";
 					} else {
-						$sql = "select * from game where g_type ='$g_type' and g_date between '$g_from_date' and '$g_to_date' and g_status = 1 order by g_id desc";
+						$sql = "select * from game where g_type ='$g_type' and ((g_date between '$g_from_date' and '$g_to_date') || (g_date like '%$g_from_date%' || g_date like '%$g_to_date%')) and g_status = 1 order by g_id desc";
 					}
 				} else {
 					$today = jdate('Y-m-d');
@@ -79,6 +111,7 @@ class report
 					<td><?php echo $prime->per_number(number_format($row['g_offer_price'])); ?></td>
 					<td>
 						<button type="button" data-toggle="modal" data-target="#showGameMeta<?php echo $i; ?>" class="btn btn-info btn-sm"><i class="fa fa-list"></i></button>
+						<button type="button" data-toggle="modal" data-target="#edit<?php echo $i; ?>" class="btn btn-warning btn-sm"><i data-toggle="tooltip" title="ویرایش" class="fa fa-edit"></i></button>
 						<div id="showGameMeta<?php echo $i; ?>" class="modal fade" role="dialog">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -157,6 +190,83 @@ class report
 							</div>
 						</div>
 					</div>
+					<div id="edit<?php echo $i; ?>" class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<label class="modal-title">ویرایش</label>
+								</div>
+								<div class="modal-body text-center">
+									<form action="" method="post">
+										<div class="row">
+											<div class="col-md-4">
+												<label>ورود</label>
+												<input name="g_in" type="text" class="form-control" placeholder="ورود" value=" <?php echo $row['g_in']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>خروج</label>
+												<input type="text" class="form-control" name="g_out" placeholder="خروج" value="<?php echo $row['g_out']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>دقیقه عادی</label>
+												<input name="g_total" type="text" class="form-control" placeholder="دقیقه عادی" value=" <?php echo $row['g_total']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>مبلغ عادی</label>
+												<input name="g_total_price" type="text" class="form-control" placeholder="مبلغ عادی" value=" <?php echo $row['g_total_price']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>دقیقه VIP</label>
+												<input name="g_total_vip" type="text" class="form-control" placeholder="دقیقه VIP" value=" <?php echo $row['g_total_vip']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>مبلغ VIP</label>
+												<input name="g_total_vip_price" type="text" class="form-control" placeholder="مبلغ VIP" value=" <?php echo $row['g_total_vip_price']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>دقیقه مازاد</label>
+												<input name="g_extra" type="text" class="form-control" placeholder="دقیقه مازاد" value=" <?php echo $row['g_extra']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>مبلغ مازاد</label>
+												<input name="g_extra_price" type="text" class="form-control" placeholder="مبلغ مازاد" value=" <?php echo $row['g_extra_price']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>ورودی</label>
+												<input name="g_login_price" type="text" class="form-control" placeholder="ورودی" value=" <?php echo $row['g_login_price']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>شارژ مصرف شده</label>
+												<input name="g_used_sharj" type="text" class="form-control" placeholder="شارژ مصرف شده" value=" <?php echo $row['g_used_sharj']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>فروشگاه</label>
+												<input name="g_total_shop" type="text" class="form-control" placeholder="فروشگاه" value=" <?php echo $row['g_total_shop']; ?>">
+											</div>
+											<div class="col-md-4">
+												<label>تخفیف</label>
+												<input name="g_offer_price" type="text" class="form-control" placeholder="تخفیف" value=" <?php echo $row['g_offer_price']; ?>">
+											</div>
+										</div>
+										<input type="hidden" name="g_id" value="<?php echo $row['g_id']; ?>">
+										<input type="hidden" name="p_id" value="<?php echo $row['p_id']; ?>">
+										<br>	
+										<div class="row">
+											<div class="col-md-12">
+												<button name="edit" class="btn btn-success btn-lg">
+													<span class="glyphicon glyphicon-ok"></span> ویرایش
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</td>
 				</tr>
 			<?php
@@ -207,7 +317,7 @@ class report
 						$today = $pa_from_date;
 						$sql = "select * from payment where pa_type ='$pa_type' and pa_date like '%$today%' order by pa_id desc";
 					} else {
-						$sql = "select * from payment where pa_type ='$pa_type' and pa_date between '$pa_from_date' and '$pa_to_date' order by pa_id desc";
+						$sql = "select * from payment where pa_type ='$pa_type' and ((pa_date between '$pa_from_date' and '$pa_to_date') || (pa_date like '%$pa_from_date%' || pa_date like '%$pa_to_date%')) order by pa_id desc";
 					}
 				} else {
 					$today = jdate('Y-m-d');
@@ -283,7 +393,7 @@ class report
 						$today = $f_from_date;
 						$sql = "select * from factor where f_date like '%$today%' order by f_id desc";
 					} else {
-						$sql = "select * from factor where f_date between '$f_from_date' and '$f_to_date' order by f_id desc";
+						$sql = "select * from factor where ((f_date between '$f_from_date' and '$f_to_date') || (f_date like '%$f_from_date%' || f_date like '%$f_to_date%')) order by f_id desc";
 					}
 				} else {
 					$today = jdate('Y-m-d');

@@ -32,9 +32,13 @@ class database
         return $pdo_conn;
     }
 
-    public function ex_query($sql)
+    public function ex_query($sql, $sudo = 0)
     {
-        $pdo_conn = $this->get_connection_string();
+		if($sudo == 1) {
+			$pdo_conn = $this->sudo_get_connection_string();
+        } else {
+			$pdo_conn = $this->get_connection_string();
+		}
         $pdo_statement = $pdo_conn->prepare($sql);
         $pdo_statement->execute();
         $id = $pdo_conn->lastInsertId();
@@ -54,9 +58,13 @@ class database
         return $result;
     }
 
-    public function get_var_query($sql)
+    public function get_var_query($sql, $sudo = 0)
     {
-        $pdo_conn = $this->get_connection_string();
+		if($sudo == 1) {
+			$pdo_conn = $this->sudo_get_connection_string();
+        } else {
+			$pdo_conn = $this->get_connection_string();
+		}
         $pdo_statement = $pdo_conn->prepare($sql);
         $pdo_statement->execute();
         $result = $pdo_statement->fetchAll();
@@ -73,7 +81,7 @@ class database
         $db_password = '';
         $pdo_conn = new PDO("mysql:host=localhost;dbname=" . $dbname . ";charset=utf8", $db_username, $db_password,
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-        $sql = "select a_id from account where a_username = '$username' and a_password = '$password'";
+        $sql = "select a_id from user where u_username = '$username' and u_password = '$password'";
         $pdo_statement = $pdo_conn->prepare($sql);
         $pdo_statement->execute();
         $result = $pdo_statement->fetchAll();
@@ -174,7 +182,7 @@ class database
 
     public function get_user_name($id)
     {
-        $pdo_conn = $this->get_connection_string();
+        $pdo_conn = $this->sudo_get_connection_string();
         $pdo_statement = $pdo_conn->prepare("select namee, family from user where ID=$id");
         $pdo_statement->execute();
         $result = $pdo_statement->fetchAll();
@@ -185,7 +193,7 @@ class database
 
     public function get_user_level($id)
     {
-        $pdo_conn = $this->get_connection_string();
+        $pdo_conn = $this->sudo_get_connection_string();
         $pdo_statement = $pdo_conn->prepare("select level from user where a_id = $account_id and ID=$id");
         $pdo_statement->execute();
         $result = $pdo_statement->fetchAll();

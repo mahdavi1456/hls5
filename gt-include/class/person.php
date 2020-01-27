@@ -81,16 +81,21 @@ class person
     {
         $db = new database();
         $pr = new prime();
+		$game_price = 0;
+        //$pk_price = $db->get_var_query("select sum(pk_price) from package inner join person on package.pk_id = person.p_pack where p_id = $p_id");
+        $factor = $db->get_var_query("select sum(pr_price) from factor where p_id = $p_id and f_status = 1");
+        $game = $db->get_var_query("select * from game where p_id = $p_id");
+		if(count($game) > 0) {
+			foreach($game as $row)
+			{
+				$game_price += $row['g_total_price'] + $row['g_total_vip_price'] + $row['g_extra_price'] - $row['g_offer_price'];
+			}
+		}
 
-        $bp_total = $db->get_var_query("select sum(pk_price) from package inner join buy_package on package.pk_id = buy_package.pk_id where p_id = $p_id");
-        $f_total = $db->get_var_query("select sum(pr_price) from factor where p_id = $p_id and f_status = 1");
-        $h_total = $db->get_var_query("select sum(g_price) from game where p_id = $p_id");
-
-        $used_total = $bp_total + $f_total + $h_total;
+        $used_total = $game_price + $factor;
 
         $p_total = $db->get_var_query("select sum(pa_price) from payment where p_id = $p_id");
-        $o_total = $db->get_var_query("select sum(pa_offer) from payment where p_id = $p_id");
-
+		
         $t = $p_total - $used_total;
 
         if($t < 0)
@@ -103,6 +108,7 @@ class person
 
     public function create_person_form()
     {
+		$u_id = $_SESSION['user_id'];
         ?>
         <div class="row">
             <div class="col-md-6">
@@ -132,6 +138,7 @@ class person
                 </select>
             </div>
         </div><br>
+		<input type="hidden" name="u_id" value="<?php echo $u_id; ?>" >
         <div class="row">
             <div class="col-md-12 text-center">
                 <button name="add-person" class="btn btn-success add-person">ثبت شخص</button>
@@ -164,7 +171,7 @@ class person
             <tr>
                 <td>
                     <label>تاریخ تولد</label>
-                    <input name="father_birthday" type="text" class="form-control datepicker_in" placeholder="تاریخ تولد" value="<?php echo $this->get_person_meta($p_id, 'father_birthday'); ?>" autocomplete="off">
+                    <input name="father_birthday" type="text" class="form-control datepicker" placeholder="تاریخ تولد" value="<?php echo $this->get_person_meta($p_id, 'father_birthday'); ?>" autocomplete="off">
                 </td>
                 <td>
                     <label>کد ملی</label>
@@ -195,11 +202,11 @@ class person
             <tr>
                 <td>
                     <label>تاریخ تولد</label>
-                    <input name="mother_birthday" type="text" class="form-control datepicker_in" placeholder="تاریخ تولد" value="<?php echo $this->get_person_meta($p_id, 'mother_birthday'); ?>" autocomplete="off">
+                    <input name="mother_birthday" type="text" class="form-control datepicker" placeholder="تاریخ تولد" value="<?php echo $this->get_person_meta($p_id, 'mother_birthday'); ?>" autocomplete="off">
                 </td>
                 <td>
                     <label>تاریخ ازدواج</label>
-                    <input name="marry_date" type="text" class="form-control datepicker_in" placeholder="تاریخ ازدواج" value="<?php echo $this->get_person_meta($p_id, 'marry_date'); ?>" autocomplete="off">
+                    <input name="marry_date" type="text" class="form-control datepicker" placeholder="تاریخ ازدواج" value="<?php echo $this->get_person_meta($p_id, 'marry_date'); ?>" autocomplete="off">
                 </td>
             </tr>
         </table>
@@ -272,6 +279,7 @@ class person
 	public function create_person_edit_form($p_id)
 	{
 		$db = new database();
+		$u_id = $_SESSION['user_id'];
 		$res = $db->get_select_query("select p_name, p_family, p_mobile, p_birth, p_gender from person where p_id = $p_id");
 		if(count($res) > 0) {
 			$p_name = $res[0]['p_name'];
@@ -305,7 +313,7 @@ class person
             </div>
             <div class="col-md-4">
                 <label>تاریخ تولد</label>
-                <input name="p_birth" class="form-control datepicker" type="text" autocomplete="off" placeholder="تاریخ تولد..." value="<?php echo $p_birth; ?>">
+                <input name="p_birth" class="form-control datepicker pdp-el" type="text" autocomplete="off" placeholder="تاریخ تولد..." value="<?php echo $p_birth; ?>">
             </div>
             <div class="col-md-4">
                 <label>جنسیت</label>
@@ -315,6 +323,7 @@ class person
                 </select>
             </div>
         </div><br>
+		<input type="hidden" name="u_id" value="<?php echo $u_id; ?>" >
         <div class="row">
             <div class="col-md-12 text-center">
                 <button name="update-person" class="btn btn-warning">ویرایش اطلاعات</button>

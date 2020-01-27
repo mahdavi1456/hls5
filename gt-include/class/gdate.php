@@ -96,5 +96,46 @@ class gdate
         $min = $minute - ($hours * 60);
         echo $prime->per_number($hours . ":" . $min);
     }
+	
+	public function get_name_month($month)
+    {
+        if($month == 1) {
+			$name = "فروردین";
+		}
+		if($month == 2) {
+			$name = "اردیبهشت";
+		}
+		if($month == 3) {
+			$name = "خرداد";
+		}
+		if($month == 4) {
+			$name = "تیر";
+		}
+		if($month == 5) {
+			$name = "مرداد";
+		}
+		if($month == 6) {
+			$name = "شهریور";
+		}
+		if($month == 7) {
+			$name = "مهر";
+		}
+		if($month == 8) {
+			$name = "آبان";
+		}	
+		if($month == 9) {
+			$name = "آذر";
+		}	
+		if($month == 10) {
+			$name = "دی";
+		}	
+		if($month == 11) {
+			$name = "بهمن";
+		}	
+		if($month == 12) {
+			$name = "اسفند";
+		}
+		return $name;
+    }
 
 }

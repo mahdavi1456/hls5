@@ -7,8 +7,16 @@
                 </div-->
                 <div class="info">
                     <a href="" class="d-block">سلام
-						<?php /*if(isset($_SESSION['name']) && isset($_SESSION['family'])) {
-						echo $_SESSION['name'] . " " . $_SESSION['family']; } */?>
+						<?php 
+							$db = new database();
+							$u_id = $_SESSION['user_id'];
+							$sql = "select * from user where u_id = $u_id";
+							$res = $db->get_select_query($sql, 1);
+							if(count($res) > 0) {
+								foreach($res as $row) {
+									echo $row['u_name'] . " " . $row['u_family'];
+								}
+							} ?>
 					</a>
                 </div>
             </div>
@@ -114,6 +122,35 @@
                                 <a href="<?php echo VIEW_URL; ?>library/taken-books.php" class="nav-link <?php if($basename == 'taken-books') echo 'active'; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>گزارش امانات</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+					  <li class="nav-item has-treeview <?php if ($basename == 'food' || $basename == 'food-plan' || $basename == 'food-reserv' ) echo 'menu-open'; ?>">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-database"></i>
+                            <p>
+                                آشپزخانه
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>kitchen/food.php" class="nav-link <?php if($basename == 'food') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>غذاها</p>
+                                </a>
+                            </li>
+							<li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>kitchen/food-plan.php" class="nav-link <?php if($basename == 'food-plan') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>برنامه غذایی</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>kitchen/food-reserv.php" class="nav-link <?php if($basename == 'food-reserv') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>رزرو غذا</p>
                                 </a>
                             </li>
                         </ul>

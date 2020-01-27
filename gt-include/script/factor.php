@@ -35,6 +35,7 @@ if(isset($_POST['set_price_regular_shop'])) {
 }
 
 if(isset($_POST['set_pro_to_cart_regular'])) {
+	$u_id = $_SESSION['user_id'];
     $p_id = $_POST['p_id'];
     $pr_id = $_POST['pr_id'];
     $f_count = 1;
@@ -46,7 +47,7 @@ if(isset($_POST['set_pro_to_cart_regular'])) {
         $pr_stock--;
         ex_query("update product set pr_stock = $pr_stock where pr_id = $pr_id");
 
-        ex_query("insert into factor(p_id, pr_id, f_count, pr_price, f_date) values($p_id, $pr_id, $f_count, $pr_price, '$f_date')");
+        ex_query("insert into factor(p_id, pr_id, f_count, pr_price, f_date, u_id) values($p_id, $pr_id, $f_count, $pr_price, '$f_date', $u_id)");
 
         load_light_factor_regular($p_id);
     } else {
