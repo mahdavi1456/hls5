@@ -69,6 +69,29 @@ class report
 					$g_type = $_GET['g_type'];
 					$g_from_date = $prime->eng_number(str_replace('/', '-', $_GET['g_from_date']));
 					$g_to_date = $prime->eng_number(str_replace('/', '-', $_GET['g_to_date']));
+					$myDataArray1 = explode('-', $g_from_date);
+					$myYear1 = $myDataArray1[0];
+					$mymonth1 = $myDataArray1[1]; 
+					$myday1 = $myDataArray1[2];
+					$myDataArray2 = explode('-', $g_to_date);
+					$myYear2 = $myDataArray2[0];
+					$mymonth2 = $myDataArray2[1]; 
+					$myday2 = $myDataArray2[2];
+					
+					if($mymonth1 < 10){
+						$mymonth1 = "0" . $mymonth1;
+					}
+					if($myday1 < 10){
+						$myday1 = "0" . $myday1;
+					}
+					if($mymonth2 < 10){
+						$mymonth2 = "0" . $mymonth2;
+					}
+					if($myday2 < 10){
+						$myday2 = "0" . $myday2;
+					}
+					$g_from_date = $myYear1 . "-" . $mymonth1 . "-" . $myday1;
+					$g_to_date = $myYear2 . "-" . $mymonth2 . "-" . $myday2;
 					if($g_from_date == $g_to_date) {
 						$today = $g_from_date;
 						$sql = "select * from game where g_date like '%$today%' and g_status = 1 order by g_id desc";
@@ -312,7 +335,30 @@ class report
 				if(isset($_GET['search'])) {
 					$pa_type = $_GET['pa_type'];
 					$pa_from_date = $prime->eng_number(str_replace('/', '-', $_GET['pa_from_date']));
-					$pa_to_date = $prime->eng_number(str_replace('/', '-', $_GET['pa_to_date']));	
+					$pa_to_date = $prime->eng_number(str_replace('/', '-', $_GET['pa_to_date']));
+					$myDataArray1 = explode('-', $pa_from_date);
+					$myYear1 = $myDataArray1[0];
+					$mymonth1 = $myDataArray1[1]; 
+					$myday1 = $myDataArray1[2];
+					$myDataArray2 = explode('-', $pa_to_date);
+					$myYear2 = $myDataArray2[0];
+					$mymonth2 = $myDataArray2[1]; 
+					$myday2 = $myDataArray2[2];
+					
+					if($mymonth1 < 10){
+						$mymonth1 = "0" . $mymonth1;
+					}
+					if($myday1 < 10){
+						$myday1 = "0" . $myday1;
+					}
+					if($mymonth2 < 10){
+						$mymonth2 = "0" . $mymonth2;
+					}
+					if($myday2 < 10){
+						$myday2 = "0" . $myday2;
+					}
+					$pa_from_date = $myYear1 . "-" . $mymonth1 . "-" . $myday1;
+					$pa_to_date = $myYear2 . "-" . $mymonth2 . "-" . $myday2;					
 					if($pa_from_date == $pa_to_date) {
 						$today = $pa_from_date;
 						$sql = "select * from payment where pa_type ='$pa_type' and pa_date like '%$today%' order by pa_id desc";
@@ -389,6 +435,29 @@ class report
 				if(isset($_GET['search'])) {
 					$f_from_date = $prime->eng_number(str_replace('/', '-', $_GET['f_from_date']));
 					$f_to_date = $prime->eng_number(str_replace('/', '-', $_GET['f_to_date']));
+					$myDataArray1 = explode('-', $f_from_date);
+					$myYear1 = $myDataArray1[0];
+					$mymonth1 = $myDataArray1[1]; 
+					$myday1 = $myDataArray1[2];
+					$myDataArray2 = explode('-', $f_to_date);
+					$myYear2 = $myDataArray2[0];
+					$mymonth2 = $myDataArray2[1]; 
+					$myday2 = $myDataArray2[2];
+					
+					if($mymonth1 < 10){
+						$mymonth1 = "0" . $mymonth1;
+					}
+					if($myday1 < 10){
+						$myday1 = "0" . $myday1;
+					}
+					if($mymonth2 < 10){
+						$mymonth2 = "0" . $mymonth2;
+					}
+					if($myday2 < 10){
+						$myday2 = "0" . $myday2;
+					}
+					$f_from_date = $myYear1 . "-" . $mymonth1 . "-" . $myday1;
+					$f_to_date = $myYear2 . "-" . $mymonth2 . "-" . $myday2;	
 					if($f_from_date == $f_to_date) {
 						$today = $f_from_date;
 						$sql = "select * from factor where f_date like '%$today%' order by f_id desc";
