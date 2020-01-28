@@ -64,6 +64,29 @@
 									$u_id = $prime->eng_number($_GET['u_id']);
 									$ua_from_date = $prime->eng_number(str_replace('/', '-', $_GET['ua_from_date']));
 									$ua_to_date = $prime->eng_number(str_replace('/', '-', $_GET['ua_to_date']));
+									$myDataArray1 = explode('-', $ua_from_date);
+									$myYear1 = $myDataArray1[0];
+									$mymonth1 = $myDataArray1[1]; 
+									$myday1 = $myDataArray1[2];
+									$myDataArray2 = explode('-', $ua_to_date);
+									$myYear2 = $myDataArray2[0];
+									$mymonth2 = $myDataArray2[1]; 
+									$myday2 = $myDataArray2[2];
+									
+									if($mymonth1 < 10){
+										$mymonth1 = "0" . $mymonth1;
+									}
+									if($myday1 < 10){
+										$myday1 = "0" . $myday1;
+									}
+									if($mymonth2 < 10){
+										$mymonth2 = "0" . $mymonth2;
+									}
+									if($myday2 < 10){
+										$myday2 = "0" . $myday2;
+									}
+									$ua_from_date = $myYear1 . "-" . $mymonth1 . "-" . $myday1;
+									$ua_to_date = $myYear2 . "-" . $mymonth2 . "-" . $myday2;
 									$sql = "select * from user_activity where u_id = $u_id and ua_date between '$ua_from_date' and '$ua_to_date' order by ua_id desc";
 								} else {
 									$today = jdate('Y-m-d');
