@@ -31,6 +31,40 @@ $(document).ready(function () {
             }
         });
     });
+	
+	$('#set-desktop-login2').click(function () {
+        var p_name = $('#p_name').val();
+		var p_family = $('#p_family').val();
+		var p_mobile = $('#p_mobile').val();
+		var p_birth = $('#p_birth').val();
+		var p_gender = $('#p_gender').find('option:selected').val();
+		var u_id = $('#u_id').val();
+		var p_regdate = $('#p_regdate').val();
+        var g_type = $('#g_type1').find('option:selected').val();
+		var g_count = $('#g_count1').find('option:selected').val();
+		var g_adj = $('#g_adj1').val();
+		if (g_adj == "")
+            g_adj = "";
+		$.post("gt-include/script/game.php", {
+            set_login2: 1,
+			p_name :p_name,
+			p_family :p_family,
+			p_mobile :p_mobile,
+			p_birth :p_birth,
+			p_gender :p_gender,
+			u_id :u_id,
+			p_regdate :p_regdate,
+			g_type :g_type ,
+			g_count : g_count,
+			g_adj : g_adj
+        }, function (data) {
+			if (data == "ok") {
+                window.location.reload();
+            } else {
+                $('#set-desktop-login-result2').html(data);
+            }
+        });
+    });
 
     $('.load-game').click(function () {
         $('#login-overly').show();
