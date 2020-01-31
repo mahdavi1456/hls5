@@ -11,6 +11,7 @@
 							$db = new database();
 							$u_id = $_SESSION['user_id'];
 							$sql = "select * from user where u_id = $u_id";
+							$u_level = $db->get_var_query("select u_level from user where u_id = $u_id", 1);
 							$res = $db->get_select_query($sql, 1);
 							if(count($res) > 0) {
 								foreach($res as $row) {
@@ -26,6 +27,8 @@
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
+						<?php 
+					if($u_level == "مدیر"){ ?>
                     <li class="nav-header">عملیات</li>
                     <li class="nav-item has-treeview <?php if ($basename == 'fullday' || $basename == 'fullpay' || $basename == 'fullfactor' || $basename == 'person-report' || $basename == 'report-reserv') echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
@@ -161,6 +164,8 @@
                             </li>
                         </ul>
                     </li>
+					<?php
+					} ?>
                     <li class="nav-header">تعاریف</li>
 					<li class="nav-item has-treeview <?php if ($basename == 'person' || $basename == 'product' || $basename == 'package' || $basename == 'adjective' || $basename == 'offer' || $basename == 'course') echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
@@ -215,6 +220,8 @@
 							</li>
 						</ul>
                     </li>
+					<?php 
+					if($u_level == "مدیر"){ ?>
                     <li class="nav-header">مدیریت</li>
                     <li class="nav-item has-treeview <?php if ($basename == 'global' || $basename == 'price' || $basename == 'sms') echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
@@ -274,6 +281,8 @@
                             <p>پشتیبانی</p>
                         </a>
                     </li>
+					<?php
+					} ?>
                     <!--li class="nav-item">
                         <a href="<?php //echo INC_URL; ?>data/migration.php"
                            class="nav-link <?php //if ($basename == 'migration') echo 'active'; ?>">
