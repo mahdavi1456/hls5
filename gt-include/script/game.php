@@ -88,6 +88,48 @@ if(isset($_POST['set_login'])) {
     exit();
 }
 
+if(isset($_POST['set_login2'])) {
+    $db = new database();
+	$p_name = $_POST['p_name'];
+	$p_family = $_POST['p_family'];
+	$p_mobile = $_POST['p_mobile'];
+	$p_birth = $_POST['p_birth'];
+	$p_gender = $_POST['p_gender'];
+	$u_id = $_POST['u_id'];
+	$p_regdate = $_POST['p_regdate'];
+	$sql1 = "insert into person(p_name, p_family, p_mobile, p_birth, p_gender, u_id, p_regdate) values('$p_name', '$p_family', '$p_mobile', '$p_birth', $p_gender, $u_id, '$p_regdate')";
+	$p_id = $db->ex_query($sql1);
+	$check1 = $db->get_var_query("select count(*) from person where p_id = $p_id");
+	if($check1) {
+		$g_count = $_POST['g_count'];
+		$g_type = $_POST['g_type'];
+		$g_in = jdate('H:i');
+		$g_date = jdate('Y/m/d');
+		$u_id = $_SESSION['user_id'];
+		if($_POST['g_adj'] != "") {
+			$g_adj = implode(', ', $_POST['g_adj']);
+		} else {
+			$g_adj = "";
+		}
+
+		$check = $db->get_select_query("select * from game where p_id = $p_id and g_status = 0");
+		
+		if(count($check) > 0) {
+			echo "<br><div class='alert alert-danger'>شما یک ورود دارید که هنوز خروج آن ثبت نشده است</div>";
+		} else {
+			$sql = "insert into game(p_id, g_type, g_count, g_in, g_date, g_adjective, u_id) values($p_id, '$g_type', $g_count, '$g_in', '$g_date', '$g_adj', $u_id)";
+			$g_id = $db->ex_query($sql);
+			$gm_key = "count";
+			$gm_value = $g_count;
+			$db->ex_query("insert into game_meta(g_id, gm_key, gm_value, gm_date, gm_time) values($g_id, '$gm_key', '$gm_value', '$g_date', '$g_in')");
+			echo "ok";
+		}
+	} else {
+		echo "<br><div class='alert alert-danger'>کد وارد شده معتبر نمی باشد</div>";
+	}
+    exit();
+}
+
 if(isset($_POST['set_out'])) {
     $pr = new prime();
     $db = new database();

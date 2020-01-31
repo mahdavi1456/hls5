@@ -19,6 +19,9 @@ class modal
                             case "login":
                                 $this->login_modal();
                                 break;
+							case "login2":
+                                $this->login_modal2();
+                                break;
                             case "count":
                                 $this->count_modal($g_id);
                                 break;
@@ -138,6 +141,87 @@ class modal
 		<?php
     }
 
+
+	public function login_modal2()
+    {
+		$u_id = $_SESSION['user_id'];
+		$db = new database();
+        ?>
+        <div class="row">
+            <div class="col-md-6">
+                <label>نام</label>
+                <input id="p_name" name="p_name" class="form-control" type="text" placeholder="نام...">
+            </div>
+            <div class="col-md-6">
+                <label>نام خانوادگی</label>
+                <input id="p_family" name="p_family" class="form-control" type="text" placeholder="نام خانوادگی...">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-4">
+                <label>موبایل</label>
+                <input id="p_mobile" class="form-control" type="text" placeholder="09xxxxxxxxx">
+            </div>
+            <div class="col-md-4">
+                <label>تاریخ تولد</label>
+                <input id="p_birth" class="form-control datepicker" type="text" autocomplete="off" placeholder="تاریخ تولد...">
+            </div>
+            <div class="col-md-4">
+                <label>جنسیت</label>
+                <select id="p_gender" class="form-control">
+                    <option value="1">پسر</option>
+                    <option value="0">دختر</option>
+                </select>
+            </div>
+        </div><br>
+		<input type="hidden" id="u_id" value="<?php echo $u_id; ?>" >
+		<input type="hidden" id="p_regdate" value="<?php echo jdate('Y-m-d'); ?>">
+		<hr>
+        <div class="row">
+            <div class="col-md-4">
+                <label>نوع ورود</label>
+                <select id="g_type1" name="g_type1" class="form-control">
+                    <option value="خانه بازی">خانه بازی</option>
+                    <option value="کافی نت">کافی نت</option>
+                    <option value="مهدکودک ساعتی">مهدکودک ساعتی</option>
+                </select>
+            </div>
+			<div class="col-md-4 text-center">
+                <label>ثبت لیست امانتی ها</label>
+                <select id="g_adj1" class="form-control select2" multiple="multiple"
+                        style="width: 100%">
+                    <?php
+                    $res_a = $db->get_select_query("select * from adjective");
+                    foreach ($res_a as $row_a) { ?>
+                        <option><?php echo $row_a['ad_name']; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
+			 <div class="col-md-4">
+                <label>تعداد</label>
+                <select id="g_count1" name="g_count1" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <button id="set-desktop-login2" class="btn btn-success">ثبت ورود</button>
+        <br>
+        <div id="set-desktop-login-result2"></div>
+		<?php
+    }
+	
     public function shop_modal($p_id)
     {
         $db = new database();

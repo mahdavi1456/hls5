@@ -66,9 +66,15 @@
                         ?>
                         <button id="desktop_login_btn" data-toggle="modal" data-target="#frmLogin"
                                 class="btn btn-success btn-lg">
-                            <i class="fa fa-sign-in"></i><br>ثبت ورود
+                            <i class="fa fa-sign-in"></i><br>ورود
                         </button>
                         <?php $m->show_modal("frmLogin", "ثبت ورود", "login"); ?>
+						
+						 <button id="desktop_login_btn2" data-toggle="modal" data-target="#frmLogin2"
+                                class="btn btn-danger btn-lg">
+                            <i class="fa fa-sign-in"></i><br>ثبت و ورود
+                        </button>
+                        <?php $m->show_modal("frmLogin2", "ثبت و ورود", "login2"); ?>
 						
 						<button data-toggle="modal" data-target="#userActivity"
                                 class="btn btn-primary btn-lg">

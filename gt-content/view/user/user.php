@@ -45,10 +45,6 @@
                                         <input name="u_family" value="<?php echo $aru->field_for_edit("user", "u_family", "u_id", $eu, 1); ?>" type="text" class="form-control" placeholder="نام خانوادگی">
                                     </div><br>
                                     <div class="col-sm-12">
-                                        <label class="control-label">کد پرسنلی</label>
-                                        <input name="u_code" value="<?php echo $aru->field_for_edit("user", "u_code", "u_id", $eu, 1); ?>" type="text" class="form-control" placeholder="کد پرسنلی">
-                                    </div><br>
-                                    <div class="col-sm-12">
                                         <label class="control-label">نام کاربری</label>
                                         <input name="u_username" value="<?php echo $aru->field_for_edit("user", "u_username", "u_id", $eu, 1); ?>" type="text" class="form-control" placeholder="نام کاربری">
                                     </div><br>
@@ -66,8 +62,12 @@
                                         </select>
                                     </div><br>
                                     <div class="col-sm-12">
-                                        <label class="control-label">رمز ورود</label>
+                                        <label class="control-label">موبایل</label>
                                         <input name="u_mobile" value="<?php echo $aru->field_for_edit("user", "u_mobile", "u_id", $eu, 1); ?>" type="text" class="form-control" placeholder="موبایل">
+                                    </div><br>
+									  <div class="col-sm-12">
+                                        <label class="control-label">کد پرسنلی</label>
+                                        <input name="u_code" value="<?php echo $aru->field_for_edit("user", "u_code", "u_id", $eu, 1); ?>" type="text" class="form-control" placeholder="کد پرسنلی">
                                     </div><br>
                                     <div class="col-ms-10">
                                         <?php
