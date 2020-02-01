@@ -37,5 +37,14 @@ class option
         </table>
         <?php
     }
+	
+	public function check_push() {
+		$push_menu = $this->get_option('push_menu');
+		if($push_menu == "" || $push_menu == 0)
+			$push_class = 'sidebar-open';
+		else 
+			$push_class = 'sidebar-collapse';
+		echo $push_class;
+	}
 
 }

@@ -2,7 +2,7 @@
 <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            <a id="push-menu" class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
         <li class="nav-item d-sm-inline-block">
             <a href="<?php echo ROOT_URL; ?>index.php" class="nav-link">داشبورد</a>

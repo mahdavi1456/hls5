@@ -20,5 +20,14 @@ $(document).ready(function () {
 		if(e.keyCode==13)
 			$('#set-activity').click();
     });
+	
+	$('#push-menu').click(function () {
+		var home_url = $('#home-url').val();
+		$.post(
+			home_url + "gt-include/script/user.php",
+			{push_menu: 1}
+		);
+    });
+	
 
 });
