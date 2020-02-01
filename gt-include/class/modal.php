@@ -103,7 +103,7 @@ class modal
 					//if(count($res) > 0) {
 					//	foreach($res as $row) {
 							?>
-							<option value="<?php //echo $row['p_id']; ?>"><?php //echo $row['p_name'] . " " . $row['p_family']; ?></option>
+							<!--option value="<?php //echo $row['p_id']; ?>"><?php //echo $row['p_name'] . " " . $row['p_family']; ?></option-->
 							<?php
 						//}
 					//}
