@@ -385,7 +385,7 @@ class modal
 		<form action="" method="post">
 			<div class="row">
 				<div class="col-md-6 col-sm-12 col-xs-12 text-center">
-					<label>کارگاه</label>
+					<label>کارگاه <span class="red">*</span></label>
 					<select name="c_id" id="buy_ticket_c_id" class="form-control select2" style="width: 100%">
 						<option value="0">-</option>
 						<?php
@@ -405,11 +405,15 @@ class modal
 				</div>
 			</div><br>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<label>مبلغ <span class="red">*</span></label>
-					<input type="number" id="ct_price" name="ct_price" class="form-control">
+					<input type="number" id="ct_price" name="ct_price" class="form-control" readonly>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
+					<label>تخفیف</label>
+					<input type="number" name="ct_disprice" class="form-control" value="0">
+				</div>
+				<div class="col-md-4">
 					<label>تعداد <span class="red">*</span></label>
 					<input type="number" name="ct_num" class="form-control" value="1">
 				</div>

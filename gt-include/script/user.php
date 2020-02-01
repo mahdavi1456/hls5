@@ -21,7 +21,7 @@ if(isset($_POST['set_activity'])) {
     $db = new database();
     
 	$u_code = ltrim($_POST['u_code'], "0");
-    $u_id = $db->get_var_query("select u_id from user where u_code = '$u_code'");
+    $u_id = $db->get_var_query("select u_id from user where u_code = '$u_code'", 1);
     if($u_id == "") {
         echo "<br><div class='alert alert-danger'>این کارت معتبر نیست</div>";
     } else {
