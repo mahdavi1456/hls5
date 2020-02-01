@@ -8,7 +8,7 @@ class user
         if($user) {
             return $user;
         } else {
-            return "invalid user name";
+            return " ";
         }
     }
 
@@ -19,7 +19,7 @@ class user
         if($user) {
             return $user;
         } else {
-            return "invalid user family";
+            return " ";
         }
     }
 

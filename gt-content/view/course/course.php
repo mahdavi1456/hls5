@@ -51,7 +51,7 @@
                                 <?php
                                 $db = new database();
                                 $prime = new prime();
-								$user = new user();
+								$user1 = new user();
                                 ?>
                                 <div class="row">
                                     <div class="col-md-3 col-sm-6">
@@ -122,21 +122,29 @@
                                                 <th>مبلغ</th>
                                                 <th>مربی</th>
 												<th>توضیحات</th>
+												<th>سود کارگاه</th>
 												<th>عملیات</th>
 											</tr>
                                             <?php
                                             $i = 1;
                                             $res = $db->get_select_query("select * from course order by c_id desc");
                                             if(count($res)>0){
-                                                foreach($res as $row) { ?>
+                                                foreach($res as $row) { 
+												$c_id = $row['c_id'];
+												$c_fee = $row['c_fee'];
+												$disprice = $db->get_var_query("select sum(ct_disprice) from course_ticket where c_id = $c_id");
+												$count_ticket = $db->get_var_query("select count(*) from course_ticket where c_id = $c_id");
+												$course_cost = $db->get_var_query("select sum(cc_price) from course_cost where c_id = $c_id");	
+												$Profit = ($c_fee *  $count_ticket) - $course_cost - $disprice; ?>
                                                     <tr>
                                                         <td><?php echo $prime->per_number($i); ?></td>
                                                         <td><?php echo $row['c_name']; ?></td>
                                                         <td><?php echo $prime->per_number($row['c_capacity']); ?></td>
                                                         <td><?php echo $prime->per_number($row['c_date']); ?></td>
                                                         <td><?php echo $prime->per_number(number_format($row['c_fee'])); ?></td>
-                                                        <td><?php //echo $user->get_user_name($row['t_id']) . " " . $user->get_user_family($row['t_id']); ?></td>
+                                                        <td><?php echo $user1->get_user_name($row['t_id']) . " " . $user1->get_user_family($row['t_id']); ?></td>
 														<td><?php echo $prime->per_number($row['c_details']); ?></td>
+														 <td><?php echo $prime->per_number(number_format($Profit)); ?></td>
 														<td>
 															<form class="miniform" action="" method="post" style="display: inline-block">
 																<button name="del-course" onclick="if(!confirm('آیا از انجام این عملیات اطمینان دارید؟')){return false;}" value="<?php echo $row['c_id']; ?>" class="btn btn-danger btn-sm">حذف</button>
@@ -201,6 +209,7 @@
 																						</tr>
 																						<?php
 																						$total_cost += $l['cc_price'];
+																						$k++;
 																					}
 																					?>
 																					<tr><th colspan="6">جمع هزینه ها: <?php echo number_format($total_cost); ?></th></tr>
@@ -228,7 +237,7 @@
 																			<button type="button" class="close" data-dismiss="modal">&times;</button>
 																			<label class="modal-title">لیست ثبت نام</label>
 																		</div>
-																		<div class="modal-body text-center">
+																		<div class="modal-body text-center p-0">
 																			<table class="table table-bordered">
 																				<?php
 																				$j = 1;
@@ -242,6 +251,7 @@
 																						<th>ردیف</th>
 																						<th>نام</th>
 																						<th>مبلغ</th>
+																						<th>تخفیف</th>
 																						<th>تعداد</th>
 																						<th>تاریخ خرید</th>
 																						<th>عملیات</th>
@@ -253,6 +263,7 @@
 																							<td><?php echo $j; ?></td>
 																							<td><?php echo $rl['ct_name']; ?></td>
 																							<td><?php echo number_format($rl['ct_price']); ?></td>
+																							<td><?php echo number_format($rl['ct_disprice']); ?></td>
 																							<td><?php echo $rl['ct_num']; ?></td>
 																							<td><?php echo $rl['ct_date']; ?></td>
 																							<td><form action="" method="post"><button type="submit" onclick="if(!confirm('آیا از انجام این عملیات اطمینان دارید؟')){return false;}" class="btn btn-danger btn-sm" name="del-course_ticket" value="<?php echo $rl['ct_id']; ?>">حذف</button></form></td>
@@ -260,13 +271,14 @@
 																						<?php
 																						$total_nums += $rl['ct_num'];
 																						$total_price += $rl['ct_price'];
+																						$j++;
 																					}
 																					?>
-																					<tr><th colspan="6">جمع تعداد: <?php echo $total_nums; ?> جمع مبلغ: <?php echo number_format($total_price); ?></th></tr>
+																					<tr><th colspan="7">جمع تعداد: <?php echo $total_nums; ?>    جمع مبلغ: <?php echo number_format($total_price); ?></th></tr>
 																					<?php
 																				} else {
 																					?>
-																					<tr><td colspan="6">لیست ثبت نام این کارگاه خالی است</td></tr>
+																					<tr><td colspan="7">لیست ثبت نام این کارگاه خالی است</td></tr>
 																					<?php
 																				}
 																				?>
@@ -284,7 +296,7 @@
                                                     $i++;
                                                 }
                                             } else { ?>
-                                                <tr><td class="text-center" colspan="8">موردی جهت نمایش موجود نیست</td></tr>
+                                                <tr><td class="text-center" colspan="9">موردی جهت نمایش موجود نیست</td></tr>
                                                 <?php
                                             } ?>
                                         </table>
