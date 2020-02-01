@@ -94,21 +94,21 @@ class modal
         <div class="row">
 			<div id="login-p-name-container" class="col-md-6 text-center">
                 <label>انتخاب شخص</label>
-                <input type="text" placeholder="سه حرف اول فامیل..." autocomplete="off" id="p_family" class="form-control" style="width: 100%">
+                <!--input type="text" placeholder="سه حرف اول فامیل..." autocomplete="off" id="p_family" class="form-control" style="width: 100%">
 				<div class="family-search-result"></div>
-				<input type="hidden" id="p_id">
-				<!--select id="p_id" class="form-control select2">
+				<input type="hidden" id="p_id"-->
+				<select id="p_id" class="form-control select2">
 					<?php
-					//$res = $db->get_select_query("select p_id, p_name, p_family from person");
-					//if(count($res) > 0) {
-					//	foreach($res as $row) {
+					$res = $db->get_select_query("select p_id, p_name, p_family from person");
+					if(count($res) > 0) {
+						foreach($res as $row) {
 							?>
-							<!--option value="<?php //echo $row['p_id']; ?>"><?php //echo $row['p_name'] . " " . $row['p_family']; ?></option-->
+							<option value="<?php echo $row['p_id']; ?>"><?php echo $row['p_name'] . " " . $row['p_family']; ?></option>
 							<?php
-						//}
-					//}
+						}
+					}
 					?>
-				<!--/select-->
+				</select>
 			</div>
             <div class="col-md-3">
                 <label>تعداد</label>
