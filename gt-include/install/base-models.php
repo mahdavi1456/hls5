@@ -41,7 +41,38 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12"><br>
-						<div class="card">
+						<?php
+                        if(isset($_POST['run-step1'])) {
+                            
+                            $f = file_put_contents("latest.zip", fopen("http://www.gratech.ir/heliup/latest.zip", 'r'), LOCK_EX);
+                            
+                            if(FALSE === $f)
+                                die("Couldn't write to file.");
+                                
+                            $zip = new ZipArchive;
+                            $res = $zip->open('latest.zip');    
+                            if ($res === TRUE) {
+                                $zip->extractTo('hls5');
+                                $zip->close();
+                                echo "extracted";
+                                //
+                            } else {
+                                //
+                                echo "i cant open this file!";
+                            }
+                        }
+                        ?>
+                        <form action="" method="post">
+                        <div class="card">
+                            <div class="card-header no-border">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">مرحله اول: دانلود فایل های نرم افزار</h3>
+                                    <button class="btn btn-success btn-sm" name="run-step1">اجرای مرحله اول</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        <div class="card">
 							<div class="card-header no-border">
 								<div class="d-flex justify-content-between">
 									<h3 class="card-title">کد ساختار ساز دیتابیس</h3>
