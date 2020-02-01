@@ -98,15 +98,15 @@ class modal
 				<div class="family-search-result"></div>
 				<input type="hidden" id="p_id">
 				<!--select id="p_id" class="form-control select2">
-					<?php/*
-					$res = $db->get_select_query("select p_id, p_name, p_family from person");
-					if(count($res) > 0) {
-						foreach($res as $row) {
+					<?php
+					//$res = $db->get_select_query("select p_id, p_name, p_family from person");
+					//if(count($res) > 0) {
+					//	foreach($res as $row) {
 							?>
-							<option value="<?php echo $row['p_id']; ?>"><?php echo $row['p_name'] . " " . $row['p_family']; ?></option>
+							<option value="<?php //echo $row['p_id']; ?>"><?php //echo $row['p_name'] . " " . $row['p_family']; ?></option>
 							<?php
-						}
-					}*/
+						//}
+					//}
 					?>
 				<!--/select-->
 			</div>
