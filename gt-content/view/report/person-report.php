@@ -115,10 +115,8 @@
 				window.location.reload();
 				return;
 			</script>
-			<?php
+		<?php
 		}
-		
-		
 		?>
 		</div>
 		<section class="content">
@@ -131,18 +129,21 @@
 								<form action="" method="get">
 									<div class="input-group input-group-sm">
 										<div id="login-p-name-container" class="col-md-9 text-center">
-											<select id="p_id" name="p_id" class="form-control select2">
+											<!--select id="p_id" name="p_id" class="form-control select2">
 												<?php
-												$res = $db->get_select_query("select p_id, p_name, p_family from person");
+												/*$res = $db->get_select_query("select p_id, p_name, p_family from person");
 												if(count($res) > 0) {
 													foreach($res as $row) {
 														?>
 														<option value="<?php echo $row['p_id']; ?>" <?php if(isset($_GET['p_id']) && $_GET['p_id'] == $row['p_id']) { echo 'selected'; } ?> ><?php echo $row['p_name'] . " " . $row['p_family']; ?></option>
 														<?php
 													}
-												}
+												}*/
 												?>
-											</select>
+											</select-->
+											<input type="text" placeholder="سه حرف اول فامیل..." autocomplete="off" id="p_family" class="form-control" style="width: 100%">
+											<div class="family-search-result"></div>
+											<input type="hidden" id="p_id" name="p_id">
 										</div>
 										<div class="input-group-append">
 											<button name="search" type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
