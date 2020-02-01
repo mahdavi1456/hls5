@@ -49,9 +49,6 @@ CREATE TABLE `person` (
 -- Dumping data for table `person`
 --
 
-INSERT INTO `person` (`p_id`, `u_id`, `p_name`, `p_family`, `p_fname`, `p_birth`, `p_code`, `p_gender`, `p_mobile`, `p_sharj`, `p_expire`, `p_pack`, `p_regdate`, `p_commitment`) VALUES
-(1, NULL, 'هانا', 'اسدی', NULL, '1395-10-02', NULL, 0, '09130000000', 0, NULL, 0, '1398-10-25', NULL),
-
 --
 -- Indexes for dumped tables
 --
@@ -59,8 +56,6 @@ INSERT INTO `person` (`p_id`, `u_id`, `p_name`, `p_family`, `p_fname`, `p_birth`
 --
 -- Indexes for table `person`
 --
-ALTER TABLE `person`
-  ADD PRIMARY KEY (`p_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -69,9 +64,7 @@ ALTER TABLE `person`
 --
 -- AUTO_INCREMENT for table `person`
 --
-ALTER TABLE `person`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4787;
-COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

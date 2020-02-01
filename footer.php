@@ -1,3 +1,4 @@
+	<input type="hidden" id="home-url" value="http://localhost/hls5/">
 	<footer class="main-footer"></footer>
     <!--aside class="control-sidebar control-sidebar-dark"></aside-->
 <script src="<?php echo ASSET_URL; ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

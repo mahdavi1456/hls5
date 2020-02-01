@@ -2,16 +2,18 @@ $(document).ready(function(){
 
     $('.load-person-extra-form-btn').click(function(){
        var p_id = $(this).data('p_id');
+	   var home_url = $('#home-url').val();
        $('#load-person-extra-form' + p_id).html("<i class='fa fa-spinner fa-spin'></i>");
-       $.post("../../../gt-include/script/person.php", {load_person_extra_form:1, p_id:p_id}, function(data){
+       $.post(home_url + "gt-include/script/person.php", {load_person_extra_form:1, p_id:p_id}, function(data){
            $('#load-person-extra-form' + p_id).html(data);
        });
     });
 	
 	$('.load-person-edit-form-btn').click(function(){
        var p_id = $(this).data('p_id');
+	   var home_url = $('#home-url').val();
 	   $('#load-person-edit-form' + p_id).html("<i class='fa fa-spinner fa-spin'></i>");
-       $.post("../../../gt-include/script/person.php", {load_person_edit_form:1, p_id:p_id}, function(data){
+       $.post(home_url + "gt-include/script/person.php", {load_person_edit_form:1, p_id:p_id}, function(data){
            $('#load-person-edit-form' + p_id).html(data);
        });
     });
@@ -25,8 +27,9 @@ $(document).ready(function(){
 		var s = $(this).val();
 		if(s != "" && s.length >= 3) {
 		$('.family-search-result').show();
+		var home_url = $('#home-url').val();
 		$('.family-search-result').html("<p>در حال جستجو...</p>");
-			$.post("../../../gt-include/script/person.php", {search_person:1, p_family:s}, function(data){
+			$.post(home_url + "gt-include/script/person.php", {search_person:1, p_family:s}, function(data){
 				if(data != "") {
 					$('.family-search-result').show();
 					$('.family-search-result').html(data);
@@ -65,7 +68,8 @@ $(document).ready(function(){
 	$('.pk_id').change(function(){
         var pk_id = $(this).find('option:selected').val();
         var id = $(this).data('id');
-		$.post("../../../gt-include/script/person.php", {get_package_info:1, pk_id:pk_id}, function(data){
+		var home_url = $('#home-url').val();
+		$.post(home_url + "gt-include/script/person.php", {get_package_info:1, pk_id:pk_id}, function(data){
 			var list = data.split(',');
             $('#bp_time' + id).val(list[0]);
             $('#bp_expire' + id).val(list[1]);
