@@ -162,7 +162,7 @@
 										<div class="panel-heading">
 											<h4 class="panel-title">جدول رزرو غذا</h4>
 										</div>
-										<table class="table table-striped">
+										<table class="table table-striped text-center">
 											<tr>
 												<th>#</th>
 												<th>تاریخ</th>
@@ -200,7 +200,7 @@
 																			$f_type = $row['f_type'];
 																			if($f_type == "صبحانه") {
 																				if($f_id == $res1[0]['f_id']){
-																					$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where f_id = $f_id ");
+																					$total = $db->get_var_query("select count(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_plan.f_id = $f_id ");
 																					if($total == "") { $total = 0;}
 																					$supply = $db->get_var_query("select f_supply from food where f_id = $f_id ");
 																					if($total < $supply) {
@@ -233,13 +233,18 @@
 																			$f_type = $row['f_type'];
 																			if($f_type == "ناهار") {
 																				if($f_id == $res1[0]['f_id']){
-																					$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where f_id = $f_id ");
+																					$total = $db->get_var_query("select count(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_plan.f_id = $f_id ");
 																					$supply = $db->get_var_query("select f_supply from food where f_id = $f_id ");
 																					if($total < $supply) {
 																						$fp_id = $res1[0]['fp_id'];
 																						$res4 = $db->get_select_query("select * from food_reserv where fp_id = $fp_id and p_id = $p_id");
 																						?>
 																						<option value="<?php echo $res1[0]['fp_id']; ?>" <?php if(count($res4) >0) { echo 'selected'; } ?> ><?php echo $row['f_name']; ?></option>
+																						<?php
+																					}
+																					else {
+																						?>
+																						<option value="0"><?php echo $row['f_name'] . " موجودی ندارد"; ?></option>
 																						<?php
 																					}
 																				}
@@ -260,13 +265,18 @@
 																			$f_type = $row['f_type'];
 																			if($f_type == "میان وعده") {
 																				if($f_id == $res1[0]['f_id']){
-																					$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where f_id = $f_id ");
+																					$total = $db->get_var_query("select count(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_plan.f_id = $f_id ");
 																					$supply = $db->get_var_query("select f_supply from food where f_id = $f_id ");
 																					if($total < $supply) {
 																						$fp_id = $res1[0]['fp_id'];
 																						$res4 = $db->get_select_query("select * from food_reserv where fp_id = $fp_id and p_id = $p_id");
 																						?>
 																						<option value="<?php echo $res1[0]['fp_id']; ?>" <?php if(count($res4) >0) { echo 'selected'; } ?> ><?php echo $row['f_name']; ?></option>
+																						<?php
+																					}
+																					else {
+																						?>
+																						<option value="0"><?php echo $row['f_name'] . " موجودی ندارد"; ?></option>
 																						<?php
 																					}
 																				}
@@ -287,13 +297,18 @@
 																			$f_type = $row['f_type'];
 																			if($f_type == "شام") {
 																				if($f_id == $res1[0]['f_id']){
-																					$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where f_id = $f_id ");
+																					$total = $db->get_var_query("select count(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_plan.f_id = $f_id ");
 																					$supply = $db->get_var_query("select f_supply from food where f_id = $f_id ");
 																					if($total < $supply) {
 																						$fp_id = $res1[0]['fp_id'];
 																						$res4 = $db->get_select_query("select * from food_reserv where fp_id = $fp_id and p_id = $p_id");
 																						?>
 																						<option value="<?php echo $res1[0]['fp_id']; ?>" <?php if(count($res4) >0) { echo 'selected'; } ?> ><?php echo $row['f_name']; ?></option>
+																						<?php
+																					}
+																					else {
+																						?>
+																						<option value="0"><?php echo $row['f_name'] . " موجودی ندارد"; ?></option>
 																						<?php
 																					}
 																				}

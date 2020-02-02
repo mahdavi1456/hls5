@@ -274,7 +274,7 @@
 																						$j++;
 																					}
 																					?>
-																					<tr><th colspan="7">جمع تعداد: <?php echo $total_nums; ?>    جمع مبلغ: <?php echo number_format($total_price); ?></th></tr>
+																					<tr><th colspan="7">جمع تعداد: <?php echo $total_nums; ?> جمع مبلغ: <?php echo number_format($total_price); ?></th></tr>
 																					<?php
 																				} else {
 																					?>
