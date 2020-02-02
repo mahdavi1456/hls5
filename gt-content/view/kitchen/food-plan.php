@@ -152,7 +152,7 @@
 										<div class="panel-heading">
 											<h4 class="panel-title">جدول برنامه غذایی</h4>
 										</div>
-										<table class="table table-striped">
+										<table class="table table-striped text-center">
 											<tr>
 												<th>#</th>
 												<th>تاریخ</th>
