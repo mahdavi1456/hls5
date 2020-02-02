@@ -101,7 +101,8 @@
 
                                 echo file_get_contents("base/package/tables/package.sql");
 
-                                echo file_get_contents("base/person/tables/person_meta.sql");
+                                echo file_get_contents("base/person/tables/person.sql");
+								echo file_get_contents("base/person/tables/person_meta.sql");
 
                                 echo file_get_contents("base/product/tables/product.sql");
 

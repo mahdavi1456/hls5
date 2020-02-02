@@ -4,7 +4,7 @@
   $gd = new gdate();
 	?>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini <?php $opt = new option(); $opt->check_push(); ?>">
 <div class="wrapper">
 	<?php 
 	include "../../../nav.php"; include"../../../menu.php"; 

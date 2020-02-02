@@ -39,3 +39,15 @@ if(isset($_POST['set_activity'])) {
     }
     exit();
 }
+
+if(isset($_POST['push_menu'])) {
+	$opt = new option();
+	$v = $opt->get_option('push_menu');
+	if($v == "" || $v == 0) {
+		$v = 1;
+	} else {
+		$v = 0;
+	}
+	$opt->save_option('push_menu', $v);
+	exit();
+}
