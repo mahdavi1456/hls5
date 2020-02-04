@@ -1,6 +1,6 @@
 <?php include"../../../header.php"; ?>
 </head>
-    <body class="hold-transition sidebar-mini">
+    <body class="hold-transition sidebar-mini <?php $opt = new option(); $opt->check_push(); ?>">
 <div class="wrapper">
     <?php include"../../../nav.php"; include"../../../menu.php"; 
 	$year = jdate('Y'); 
@@ -72,267 +72,269 @@
 							$date = $myYear1 . "-" . $mymonth1 . "-" . $myday1;?>
 								<hr>
 								<div class="row" id="div_print">
-									<div class="panel panel-success table-responsive">
-										<div class="panel-heading">
-											<h4 class="panel-title">آمار غذاها</h4>
+									<div  class="col-12">
+										<div class="panel panel-success table-responsive">
+											<div class="panel-heading">
+												<h4 class="panel-title">آمار غذاها</h4>
+											</div>
+											<table class="table table-striped text-center">
+												<tr>
+													<th>وعده</th>
+													<th>نام غذا</th>
+													<th>تعداد</th>
+												</tr>
+												<tr>
+													<td>صبحانه</td>
+													<td>
+														<?php
+														$total = 0; 
+														$res = $db->get_select_query("select * from food");
+														if(count($res) > 0) {
+															foreach($res as $row) {
+																$f_id = $row['f_id'];
+																$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
+																if(count($res1) > 0){
+																	$f_type = $row['f_type'];
+																	if($f_type == "صبحانه") {
+																		if($f_id == $res1[0]['f_id']){
+																			$fp_id = $res1[0]['fp_id'];
+																			$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
+																			if($total == "") { $total = 0;}
+																			echo $row['f_name'];
+																		}
+																	}
+																}
+															}
+														} ?>
+													</td>
+													<td>
+														<?php
+															echo $total;
+														?>
+													</td>
+												</tr>
+												<tr>
+													<td>ناهار</td>
+													<td>
+														<?php
+														$total = 0;
+														$res = $db->get_select_query("select * from food");
+														if(count($res) > 0) {
+															foreach($res as $row) {
+																$f_id = $row['f_id'];
+																$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
+																if(count($res1) > 0){
+																	$f_type = $row['f_type'];
+																	if($f_type == "ناهار") {
+																		if($f_id == $res1[0]['f_id']){
+																			$fp_id = $res1[0]['fp_id'];
+																			$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
+																			if($total == "") { $total = 0;}
+																			echo $row['f_name'];
+																		}
+																	}
+																}
+															}
+														} ?>
+													</td>
+													<td>
+														<?php
+															echo $total;
+														?>
+													</td>
+												</tr>
+												<tr>
+													<td>میان وعده</td>
+													<td>
+														<?php
+														$total = 0;
+														$res = $db->get_select_query("select * from food");
+														if(count($res) > 0) {
+															foreach($res as $row) {
+																$f_id = $row['f_id'];
+																$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
+																if(count($res1) > 0){
+																	$f_type = $row['f_type'];
+																	if($f_type == "میان وعده") {
+																		if($f_id == $res1[0]['f_id']){
+																			$fp_id = $res1[0]['fp_id'];
+																			$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
+																			if($total == "") { $total = 0;}
+																			echo $row['f_name'];
+																		}
+																	}
+																}
+															}
+														} ?>
+													</td>
+													<td>
+														<?php
+															echo $total;
+														?>
+													</td>
+												</tr>
+												<tr>
+													<td>شام</td>
+													<td>
+														<?php
+														$total = 0;
+														$res = $db->get_select_query("select * from food");
+														if(count($res) > 0) {
+															foreach($res as $row) {
+																$f_id = $row['f_id'];
+																$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
+																if(count($res1) > 0){
+																	$f_type = $row['f_type'];
+																	if($f_type == "شام") {
+																		if($f_id == $res1[0]['f_id']){
+																			$fp_id = $res1[0]['fp_id'];
+																			$total = $db->get_var_query("select count(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
+																			if($total == "") { $total = 0;}
+																			echo $row['f_name'];
+																		}
+																	}
+																}
+															}
+														} ?>
+													</td>
+													<td>
+														<?php
+															echo $total;
+														?>
+													</td>
+												</tr>
+											</table>
 										</div>
-										<table class="table table-striped text-center">
-											<tr>
-												<th>وعده</th>
-												<th>نام غذا</th>
-												<th>تعداد</th>
-											</tr>
-											<tr>
-												<td>صبحانه</td>
-												<td>
-													<?php
-													$total = 0; 
-													$res = $db->get_select_query("select * from food");
-													if(count($res) > 0) {
-														foreach($res as $row) {
-															$f_id = $row['f_id'];
-															$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
-															if(count($res1) > 0){
-																$f_type = $row['f_type'];
-																if($f_type == "صبحانه") {
-																	if($f_id == $res1[0]['f_id']){
-																		$fp_id = $res1[0]['fp_id'];
-																		$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
-																		if($total == "") { $total = 0;}
-																		echo $row['f_name'];
-																	}
-																}
-															}
-														}
-													} ?>
-												</td>
-												<td>
-													<?php
-														echo $total;
-													?>
-												</td>
-											</tr>
-											<tr>
-												<td>ناهار</td>
-												<td>
-													<?php
-													$total = 0;
-													$res = $db->get_select_query("select * from food");
-													if(count($res) > 0) {
-														foreach($res as $row) {
-															$f_id = $row['f_id'];
-															$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
-															if(count($res1) > 0){
-																$f_type = $row['f_type'];
-																if($f_type == "ناهار") {
-																	if($f_id == $res1[0]['f_id']){
-																		$fp_id = $res1[0]['fp_id'];
-																		$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
-																		if($total == "") { $total = 0;}
-																		echo $row['f_name'];
-																	}
-																}
-															}
-														}
-													} ?>
-												</td>
-												<td>
-													<?php
-														echo $total;
-													?>
-												</td>
-											</tr>
-											<tr>
-												<td>میان وعده</td>
-												<td>
-													<?php
-													$total = 0;
-													$res = $db->get_select_query("select * from food");
-													if(count($res) > 0) {
-														foreach($res as $row) {
-															$f_id = $row['f_id'];
-															$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
-															if(count($res1) > 0){
-																$f_type = $row['f_type'];
-																if($f_type == "میان وعده") {
-																	if($f_id == $res1[0]['f_id']){
-																		$fp_id = $res1[0]['fp_id'];
-																		$total = $db->get_var_query("select sum(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
-																		if($total == "") { $total = 0;}
-																		echo $row['f_name'];
-																	}
-																}
-															}
-														}
-													} ?>
-												</td>
-												<td>
-													<?php
-														echo $total;
-													?>
-												</td>
-											</tr>
-											<tr>
-												<td>شام</td>
-												<td>
-													<?php
-													$total = 0;
-													$res = $db->get_select_query("select * from food");
-													if(count($res) > 0) {
-														foreach($res as $row) {
-															$f_id = $row['f_id'];
-															$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
-															if(count($res1) > 0){
-																$f_type = $row['f_type'];
-																if($f_type == "شام") {
-																	if($f_id == $res1[0]['f_id']){
-																		$fp_id = $res1[0]['fp_id'];
-																		$total = $db->get_var_query("select count(fr_id) from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
-																		if($total == "") { $total = 0;}
-																		echo $row['f_name'];
-																	}
-																}
-															}
-														}
-													} ?>
-												</td>
-												<td>
-													<?php
-														echo $total;
-													?>
-												</td>
-											</tr>
-										</table>
 									</div>
-								</div>
-								<hr>
-								<div class="row" id="div_print">
-									<div class="panel panel-success table-responsive">
-										<div class="panel-heading">
-											<h4 class="panel-title">لیست افراد</h4>
+									<hr>
+									<div class="col-12">
+										<div class="panel panel-success table-responsive">
+											<div class="panel-heading">
+												<h4 class="panel-title">لیست افراد</h4>
+											</div>
+											<table class="table table-striped text-center">
+												<tr>
+													<th>صبحانه</th>
+													<th>ناهار</th>
+													<th>میان وعده</th>
+													<th>شام</th>
+												</tr>
+												<tr>
+													<td>
+														<?php
+														$total = 0;
+														$res = $db->get_select_query("select * from food");
+														if(count($res) > 0) {
+															foreach($res as $row) {
+																$f_id = $row['f_id'];
+																$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
+																if(count($res1) > 0){
+																	$f_type = $row['f_type'];
+																	if($f_type == "صبحانه") {
+																		if($f_id == $res1[0]['f_id']){
+																			$fp_id = $res1[0]['fp_id'];
+																			$res4 = $db->get_select_query("select * from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
+																			if(count($res4) > 0)
+																			{
+																				foreach($res4 as $row4) {
+																					echo $p->get_person_name($row4['p_id']); ?>
+																					<br>
+																					<?php
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														} ?>
+													</td>
+													<td>
+														<?php
+														$total = 0;
+														$res = $db->get_select_query("select * from food");
+														if(count($res) > 0) {
+															foreach($res as $row) {
+																$f_id = $row['f_id'];
+																$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
+																if(count($res1) > 0){
+																	$f_type = $row['f_type'];
+																	if($f_type == "نهار") {
+																		if($f_id == $res1[0]['f_id']){
+																			$fp_id = $res1[0]['fp_id'];
+																			$res4 = $db->get_select_query("select * from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
+																			if(count($res4) > 0)
+																			{
+																				foreach($res4 as $row4) {
+																					echo $p->get_person_name($row4['p_id']); ?>
+																					<br>
+																					<?php
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														} ?>
+													</td>
+													<td>
+														<?php
+														$total = 0;
+														$res = $db->get_select_query("select * from food");
+														if(count($res) > 0) {
+															foreach($res as $row) {
+																$f_id = $row['f_id'];
+																$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
+																if(count($res1) > 0){
+																	$f_type = $row['f_type'];
+																	if($f_type == "میان وعده") {
+																		if($f_id == $res1[0]['f_id']){
+																			$fp_id = $res1[0]['fp_id'];
+																			$res4 = $db->get_select_query("select * from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
+																			if(count($res4) > 0)
+																			{
+																				foreach($res4 as $row4) {
+																					echo $p->get_person_name($row4['p_id']); ?>
+																					<br>
+																					<?php
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														} ?>
+													</td>
+													<td>
+														<?php
+														$total = 0;
+														$res = $db->get_select_query("select * from food");
+														if(count($res) > 0) {
+															foreach($res as $row) {
+																$f_id = $row['f_id'];
+																$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
+																if(count($res1) > 0){
+																	$f_type = $row['f_type'];
+																	if($f_type == "شام") {
+																		if($f_id == $res1[0]['f_id']){
+																			$fp_id = $res1[0]['fp_id'];
+																			$res4 = $db->get_select_query("select * from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
+																			if(count($res4) > 0)
+																			{
+																				foreach($res4 as $row4) {
+																					echo $p->get_person_name($row4['p_id']); ?>
+																					<br>
+																					<?php
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														} ?>
+													</td>
+												</tr>
+											</table>
 										</div>
-										<table class="table table-striped text-center">
-											<tr>
-												<th>صبحانه</th>
-												<th>ناهار</th>
-												<th>میان وعده</th>
-												<th>شام</th>
-											</tr>
-											<tr>
-												<td>
-													<?php
-													$total = 0;
-													$res = $db->get_select_query("select * from food");
-													if(count($res) > 0) {
-														foreach($res as $row) {
-															$f_id = $row['f_id'];
-															$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
-															if(count($res1) > 0){
-																$f_type = $row['f_type'];
-																if($f_type == "صبحانه") {
-																	if($f_id == $res1[0]['f_id']){
-																		$fp_id = $res1[0]['fp_id'];
-																		$res4 = $db->get_select_query("select * from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
-																		if(count($res4) > 0)
-																		{
-																			foreach($res4 as $row4) {
-																				echo $p->get_person_name($row4['p_id']); ?>
-																				<br>
-																				<?php
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													} ?>
-												</td>
-												<td>
-													<?php
-													$total = 0;
-													$res = $db->get_select_query("select * from food");
-													if(count($res) > 0) {
-														foreach($res as $row) {
-															$f_id = $row['f_id'];
-															$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
-															if(count($res1) > 0){
-																$f_type = $row['f_type'];
-																if($f_type == "نهار") {
-																	if($f_id == $res1[0]['f_id']){
-																		$fp_id = $res1[0]['fp_id'];
-																		$res4 = $db->get_select_query("select * from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
-																		if(count($res4) > 0)
-																		{
-																			foreach($res4 as $row4) {
-																				echo $p->get_person_name($row4['p_id']); ?>
-																				<br>
-																				<?php
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													} ?>
-												</td>
-												<td>
-													<?php
-													$total = 0;
-													$res = $db->get_select_query("select * from food");
-													if(count($res) > 0) {
-														foreach($res as $row) {
-															$f_id = $row['f_id'];
-															$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
-															if(count($res1) > 0){
-																$f_type = $row['f_type'];
-																if($f_type == "میان وعده") {
-																	if($f_id == $res1[0]['f_id']){
-																		$fp_id = $res1[0]['fp_id'];
-																		$res4 = $db->get_select_query("select * from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
-																		if(count($res4) > 0)
-																		{
-																			foreach($res4 as $row4) {
-																				echo $p->get_person_name($row4['p_id']); ?>
-																				<br>
-																				<?php
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													} ?>
-												</td>
-												<td>
-													<?php
-													$total = 0;
-													$res = $db->get_select_query("select * from food");
-													if(count($res) > 0) {
-														foreach($res as $row) {
-															$f_id = $row['f_id'];
-															$res1 = $db->get_select_query("select f_id , fp_id from food_plan where fp_date = '$date' and f_id = $f_id ");
-															if(count($res1) > 0){
-																$f_type = $row['f_type'];
-																if($f_type == "شام") {
-																	if($f_id == $res1[0]['f_id']){
-																		$fp_id = $res1[0]['fp_id'];
-																		$res4 = $db->get_select_query("select * from food_reserv inner join food_plan on food_reserv.fp_id = food_plan.fp_id inner join food on food_plan.f_id = food.f_id where food_reserv.fp_id = $fp_id ");
-																		if(count($res4) > 0)
-																		{
-																			foreach($res4 as $row4) {
-																				echo $p->get_person_name($row4['p_id']); ?>
-																				<br>
-																				<?php
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													} ?>
-												</td>
-											</tr>
-										</table>
 									</div>
 								</div>
 								<div class="item col-md-12 text-center">

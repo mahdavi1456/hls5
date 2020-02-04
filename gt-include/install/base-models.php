@@ -42,9 +42,11 @@
 				<div class="row">
 					<div class="col-lg-12"><br>
 						<?php
+						$opt = new option();
+						$opt_home = $opt->get_option('opt_home');
                         if(isset($_POST['run-step1'])) {
                             
-                            $f = file_put_contents("latest.zip", fopen("http://www.gratech.ir/heliup/latest.zip", 'r'), LOCK_EX);
+                            $f = file_put_contents("latest.zip", fopen("http://new.heliapp.ir/update/latest.zip", 'r'), LOCK_EX);
                             
                             if(FALSE === $f)
                                 die("Couldn't write to file.");
@@ -52,7 +54,7 @@
                             $zip = new ZipArchive;
                             $res = $zip->open('latest.zip');    
                             if ($res === TRUE) {
-                                $zip->extractTo('hls5');
+                                $zip->extractTo('../../../hls5');
                                 $zip->close();
                                 echo "extracted";
                                 //

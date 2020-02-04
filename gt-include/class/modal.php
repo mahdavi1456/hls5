@@ -154,7 +154,7 @@ class modal
             </div>
             <div class="col-md-6">
                 <label>نام خانوادگی</label>
-                <input id="p_family" name="p_family" class="form-control" type="text" placeholder="نام خانوادگی...">
+                <input id="p_family1" name="p_family1" class="form-control" type="text" placeholder="نام خانوادگی...">
             </div>
         </div><br>
         <div class="row">

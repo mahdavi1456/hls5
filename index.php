@@ -55,11 +55,6 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12 text-center">
-                        <a class="btn btn-info btn-lg" href="<?php echo VIEW_URL; ?>person/person.php" target="popup" 
-							onclick="window.open('<?php echo VIEW_URL; ?>person/person.php','popup','width=600,height=600'); return false;">
-							<i class="fa fa-user"></i><br>تعریف شخص
-						</a>
-				
 						<?php
                         $db = new database();
                         $m = new modal();

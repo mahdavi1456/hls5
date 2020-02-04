@@ -56,8 +56,8 @@
                                     <div class="row">
                                         <div class="col-md-2"><label>آدرس سایت</label></div>
                                         <div class="col-md-3">
-                                            <input readonly style="direction: ltr;" name="opt_home" value="<?php ?>"
-                                                   class="form-control" type="text" placeholder="نام مجموعه...">
+                                            <input style="direction: ltr;" name="opt_home" value="<?php ?>"
+                                                   class="form-control" type="text" placeholder="آدرس سایت..." readonly>
                                         </div>
                                     </div>
                                     <br>
@@ -66,7 +66,7 @@
                                         <div class="col-md-3">
                                             <input style="direction: ltr;" name="ppp"
                                                    value="<?php echo $opt->get_option('ppp'); ?>" class="form-control"
-                                                   type="number" placeholder="صفحه بندی مشتریان">
+                                                   type="number" placeholder="صفحه بندی مشتریان...">
                                         </div>
                                     </div>
 									<br>
@@ -75,7 +75,7 @@
                                         <div class="col-md-10">
                                             <textarea name="roles"
                                                    value="<?php echo $opt->get_option('roles'); ?>" class="rich form-control"
-                                                   placeholder="قوانین مجموعه"><?php echo $opt->get_option('roles'); ?></textarea>
+                                                   placeholder="قوانین مجموعه..."><?php echo $opt->get_option('roles'); ?></textarea>
                                         </div>
                                     </div>
 									<br>

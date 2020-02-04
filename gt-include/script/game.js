@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     $('#set-desktop-login').click(function () {
         var p_code = $('#p_code').val();
-		var p_id = $('#p_id').find('option:selected').val();
+		var p_id = $('#p_id').val();
         var g_adj = $('#g_adj').val();
         if (g_adj == "")
             g_adj = "";
@@ -34,7 +34,7 @@ $(document).ready(function () {
 	
 	$('#set-desktop-login2').click(function () {
         var p_name = $('#p_name').val();
-		var p_family = $('#p_family').val();
+		var p_family = $('#p_family1').val();
 		var p_mobile = $('#p_mobile').val();
 		var p_birth = $('#p_birth').val();
 		var p_gender = $('#p_gender').find('option:selected').val();
