@@ -1,4 +1,5 @@
-<?php include "../../gt-include.php"; ?>
+<?php include "../../gt-include.php";
+include "function.php"; ?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -42,10 +43,8 @@
 				<div class="row">
 					<div class="col-lg-12"><br>
 						<?php
-						$opt = new option();
-						$opt_home = $opt->get_option('opt_home');
                         if(isset($_POST['run-step1'])) {
-                            
+                            set_time_limit(300);
                             $f = file_put_contents("latest.zip", fopen("http://new.heliapp.ir/update/latest.zip", 'r'), LOCK_EX);
                             
                             if(FALSE === $f)
@@ -62,6 +61,7 @@
                                 //
                                 echo "i cant open this file!";
                             }
+							
                         }
                         ?>
                         <form action="" method="post">

@@ -6,7 +6,8 @@
                     <img src="" class="img-circle elevation-2" alt="User Image">
                 </div-->
                 <div class="info">
-                    <a href="" class="d-block">سلام
+					<a id="push-menu" class="nav-link a-pos text-left" data-widget="pushmenu" href="#">x</a>
+                    <a href="" class="r-pos d-block">سلام
 						<?php 
 							$db = new database();
 							$u_id = $_SESSION['user_id'];
@@ -19,6 +20,7 @@
 								}
 							} ?>
 					</a>
+					
                 </div>
             </div>
             <?php $basename = basename($_SERVER["SCRIPT_FILENAME"], '.php'); ?>
