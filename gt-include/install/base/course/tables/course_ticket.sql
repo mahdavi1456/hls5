@@ -34,6 +34,7 @@ CREATE TABLE `course_ticket` (
   `ct_num` tinyint(4) NOT NULL,
   `ct_name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `ct_price` decimal(10,0) NOT NULL,
+  `ct_disprice` decimal(10,0) NOT NULL DEFAULT 0,
   `ct_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
