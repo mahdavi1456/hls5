@@ -53,10 +53,36 @@
                             <div class="col-md-6"><h3>بروزرسانی نرم افزار</h3></div>
                             <div class="col-md-6">
                                 <div class="alert alert-success">شما از آخرین نسخه نرم افزار استفاده می کنید</div>
-                                <!--form action="update/run.php" method="post">
-                                <button class="btn btn-success" name="update">شروع عملیات بروزرسانی</button>
-                                </form-->
+                                <form action="" method="post">
+									<button class="btn btn-success" name="update">شروع عملیات بروزرسانی</button>
+                                </form>
                             </div>
+							<?php
+								if(isset($_POST['update'])) {
+									set_time_limit(300);
+									$f = file_put_contents("latest.zip", fopen("http://new.heliapp.ir/update/latest.zip", 'r'), LOCK_EX);
+									
+									if(FALSE === $f)
+										die("Couldn't write to file.");
+										
+									$zip = new ZipArchive;
+									$res = $zip->open('latest.zip');    
+									if ($res === TRUE) {
+										$zip->extractTo('../hls5');
+										$zip->close(); ?>
+										<script>
+											alert("بروزرسانی با موفقیت انجام شد");
+										</script>
+										<?php
+									} else { ?>
+										<script>
+											alert("بروزرسانی با خطا متواجه شد");
+										</script
+										<?php
+									}
+									
+								}
+							?>
                         </div>
                     </div>
                     <!-- /.card-body -->
