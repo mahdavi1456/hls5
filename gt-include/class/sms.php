@@ -165,4 +165,27 @@ class sms
         return $res_data;
     }
 
+    public function get_delivery($bulk)
+    {
+        $opt = new option();
+        $url = "https://ippanel.com/services.jspd";
+        $param = array
+        (
+            'uname' => $opt->get_option('sms_user'),
+            'pass' => $opt->get_option('sms_pass'),
+            'op' => 'delivery',
+            'uinqid' => $bulk
+        );            
+        $handler = curl_init($url);             
+        curl_setopt($handler, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($handler, CURLOPT_POSTFIELDS, $param);                       
+        curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
+        $response2 = curl_exec($handler);
+        
+        $response2 = json_decode($response2);
+        $res_code = $response2[0];
+        $res_data = $response2[1];
+        return $res_data;
+    }
+
 }
