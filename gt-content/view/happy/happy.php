@@ -27,7 +27,6 @@
 									<th>نام پدر</th>
 									<th>تاریخ تولد</th>
 									<th>چند روز دیگه؟</th>
-									<th>تلفن</th>
 									<th>موبایل</th>
 									<th>بسته</th>
 									<th>تاریخ انقضاء</th>
@@ -88,7 +87,6 @@
 												echo "<span style='color: lime'>" . per_number($diff) . " روز دیگه </span>";
 											} */?>
 										</td>
-										<td><?php echo per_number($row['p_phone']); ?></td>
 										<td><?php echo per_number($row['p_mobile']); ?></td>
 										<td><?php echo get_package_name($row['p_pack']); ?></td>
 										<td><?php echo per_number($row['p_expire']); ?></td>
