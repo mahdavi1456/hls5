@@ -144,5 +144,25 @@ class sms
 		$sql = "insert into sms_log(sl_type, sl_user, sl_date, sl_line, sl_bulk, sl_rcpts, sl_text) values('$sl_type', $sl_user, '$sl_date', '$sl_line', $sl_bulk, '$sl_rcpts', '$sl_text')";
 		$db->ex_query($sql);
 	}
+	
+	public function get_lines() {
+        $opt = new option();
+        $url = "https://ippanel.com/services.jspd";
+        $param = array
+        (
+            'uname' => $opt->get_option('sms_user'),
+            'pass' => $opt->get_option('sms_pass'),
+            'op' => 'lines'
+        );
+        $handler = curl_init($url);
+        curl_setopt($handler, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($handler, CURLOPT_POSTFIELDS, $param);
+        curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
+        $response2 = curl_exec($handler);
+        $response2 = json_decode($response2);
+        $res_code = $response2[0];
+        $res_data = $response2[1];
+        return $res_data;
+    }
 
 }
