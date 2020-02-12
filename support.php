@@ -1,16 +1,12 @@
 <?php include "header.php"; ?>
     </head>
-    <body class="hold-transition sidebar-mini <?php $opt = new option(); $opt->check_push(); ?>">
+<body class="hold-transition sidebar-mini <?php $opt = new option(); $opt->check_push(); ?>">
 <div class="wrapper">
-    <?php include "nav.php";
-    include "menu.php"; ?>
-
+    <?php include "nav.php"; include "menu.php"; ?>
     <div class="content-wrapper">
         <br>
-        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <!-- COLOR PALETTE -->
                 <div class="card card-default color-palette-box">
                     <div class="card-header">
                         <h3 class="card-title">
@@ -58,48 +54,38 @@
                                 </form>
                             </div>
 							<?php
-								if(isset($_POST['update'])) {
-									set_time_limit(300);
-									$f = file_put_contents("latest.zip", fopen("http://new.heliapp.ir/update/latest.zip", 'r'), LOCK_EX);
-									
-									if(FALSE === $f)
-										die("Couldn't write to file.");
+							if(isset($_POST['update'])) {
+								set_time_limit(300);
+								$f = file_put_contents("latest.zip", fopen("http://new.heliapp.ir/update/latest.zip", 'r'), LOCK_EX);	
+								if(FALSE === $f)
+									die("Couldn't write to file.");
 										
-									$zip = new ZipArchive;
-									$res = $zip->open('latest.zip');    
-									if ($res === TRUE) {
-										$zip->extractTo('../hls5');
-										$zip->close(); ?>
-										<script>
-											alert("بروزرسانی با موفقیت انجام شد");
-										</script>
-										<?php
-									} else { ?>
-										<script>
-											alert("بروزرسانی با خطا متواجه شد");
-										</script
-										<?php
-									}
-									
-								}
+								$zip = new ZipArchive;
+								$res = $zip->open('latest.zip');    
+								if ($res === TRUE) {
+									$zip->extractTo('../hls5');
+									$zip->close(); ?>
+									<script>
+										alert("بروزرسانی با موفقیت انجام شد");
+									</script>
+									<?php
+								} else { ?>
+									<script>
+										alert("بروزرسانی با خطا متواجه شد");
+									</script>
+									<?php
+								}	
+							}
 							?>
                         </div>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-    </footer>
-
-    <!-- Control Sidebar -->
+    <footer class="main-footer"></footer>
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
     </aside>
-    <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
 <?php include "footer.php"; ?>
