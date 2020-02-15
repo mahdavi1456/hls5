@@ -74,8 +74,6 @@
 											<th>نام خانوادگی</th>
 											<th>نام پدر</th>
 											<th>تاریخ تولد</th>
-											<th>چند روز دیگه؟</th>
-											<th>تلفن</th>
 											<th>موبایل</th>
 											<th>بسته</th>
 											<th>تاریخ انقضاء</th>
@@ -101,24 +99,6 @@
 														<td><?php echo $row['p_family']; ?></td>
 														<td><?php echo $row['p_fname']; ?></td>
 														<td><?php echo $prime->per_number($row['p_birth']); ?></td>
-														<td>
-															<?php
-															if($birth == $now) {
-																echo "<span style='background: lime; color: #fff; padding: 2px 5px;border-radius: 4px;'>امروز</span>";
-															} else {
-																if($m < $b){
-																	echo "<span style='background: blue; color: #fff; padding: 2px 5px;border-radius: 4px;'>" . $prime->per_number($b - $m) . " ماه دیگه</span>";
-																} else if($m==$b) {
-																	$d = jdate('d');
-																	$bd = $sp[2];
-																	echo "<span style='background: blue; color: #fff; padding: 2px 5px;border-radius: 4px;'>" . $prime->per_number($d - $bd) . " روز دیگه</span>";
-																} else{
-																	echo "<span style='background: red; color: #fff; padding: 2px 5px;border-radius: 4px;'>" . $prime->per_number($m - $b) . " ماه پیش</span>";
-																}
-															}
-															?>
-														</td>
-														<td><?php echo $prime->per_number($row['p_phone']); ?></td>
 														<td><?php echo $prime->per_number($row['p_mobile']); ?></td>
 														<td><?php echo $pack->get_package_name($row['p_pack']); ?></td>
 														<td><?php echo $prime->per_number($row['p_expire']); ?></td>
@@ -191,7 +171,7 @@
 												}
 											} else { ?>
 											<tr>
-												<td colspan="13" class="text-center">امروز هیچ تولدی نداریم!</td>
+												<td colspan="11" class="text-center">امروز هیچ تولدی نداریم!</td>
 											</tr>
 											<?php
 											} ?>

@@ -24,6 +24,8 @@
 									<th>خط ارسالی</th>
 									<th>گیرندگان</th>
 									<th>کد بالک</th>
+									<th>وضعیت</th>
+									<th>گزارشات</th>
 								</tr>
 								<?php
 								$db = new database();
@@ -58,13 +60,20 @@
 												</div>
 											</td>
 											<td><?php echo $pr->per_number($row['sl_bulk']); ?></td>
+											<td>
+												<?php $sms = new sms();
+												$list = $sms->get_delivery($row['sl_bulk']);
+												echo explode(":", json_decode($list)[0])[1];
+												?>		
+											</td>
+											<td><a href="http://ippanel.com" target="_blank" class="btn btn-success btn-sm">سامانه گزارشات</a></td>
 										</tr>
 										<?php
 										$i++;
 									}
 								} else { ?>
 									<tr>
-										<td colspan="7" class="text-center">موردی جهت نمایش موجود نیست</td>
+										<td colspan="9" class="text-center">موردی جهت نمایش موجود نیست</td>
 									</tr>
 								<?php
 								} ?>
