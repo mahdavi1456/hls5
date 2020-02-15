@@ -5,9 +5,7 @@ class price
 
     public function round_price($num)
     {
-		$num1 = strrev($num);
-		$arr = str_split($num1,1);
-		$num_new = $arr[1] . $arr[0];
+		$num_new = $num % 100;
 		if($num_new < 50) {
 			$num = $num - $num_new;
 		}
@@ -232,8 +230,9 @@ class price
 			$normal_price = $this->chiko_round($total);
 			
 		} else {
-            
-			$normal_price = ($this->round_price($total) / 60) * $base_price;
+            $a = $base_price / 60;
+			$b = $a * $total;
+			$normal_price = $this->round_price($b);
         
 		}
         return $normal_price;
