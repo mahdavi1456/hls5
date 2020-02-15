@@ -5,6 +5,17 @@ class price
 
     public function round_price($num)
     {
+		$num1 = strrev($num);
+		$arr = str_split($num1,1);
+		$num_new = $arr[1] . $arr[0];
+		if($num_new < 50) {
+			$num = $num - $num_new;
+		}
+		else {
+			$num_new = 100 - $num_new;
+			$num = $num + $num_new;
+			
+		}
 		return $num;
 		/*
         $p = $num % 100;
