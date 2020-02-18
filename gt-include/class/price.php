@@ -205,6 +205,32 @@ class price
 			return 70000;
 		}
     }
+	
+	
+	 public function melody_round($time)
+    {
+        if($time == 0) {
+			return 0;
+		} else if ($time > 0 && $time <= 40) {
+            return 15000;
+        } else if ($time >= 41 && $time <= 50) {
+            return 20000;
+        } else if ($time >= 51 && $time <= 60) {
+            return 25000;
+        } else if ($time >= 61 && $time <= 100) {
+            return 30000;
+        } else if ($time >= 101 && $time <= 110) {
+            return 35000;
+        } else if ($time >= 111 && $time <= 120) {
+            return 40000;
+        }  else if ($time >= 121 && $time <= 160) {
+            return 50000;
+        }  else if ($time >= 161 && $time <= 170) {
+            return 55000;
+        }  else if ($time >= 171 && $time <= 180) {
+            return 60000;
+        }
+    }
 
     public function calc_normal_price($total)
     {
@@ -220,6 +246,10 @@ class price
         if ($round_type == 'baloon') {
         
 			$normal_price = $this->baloon_round($total);
+        
+		} else if ($round_type == 'melody') {
+        
+			$normal_price = $this->melody_round($total);
         
 		} else if ($round_type == 'quarter') {
             
@@ -254,7 +284,9 @@ class price
 		} else if ($round_type == 'quarter') {
             $vip_price = ($this->quarter_round($total_vip) / 60) * $base_price;
 		} else {
-            $vip_price = ($this->round_price($total_vip) / 60) * $base_price;
+			$a = $base_price / 60;
+			$b = $a * $total_vip;
+            $vip_price = $this->round_price($b);
 			
 		}
         return $vip_price;
