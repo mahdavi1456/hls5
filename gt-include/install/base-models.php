@@ -90,6 +90,7 @@ include "function.php"; ?>
                                 echo file_get_contents("base/course/tables/course_cost.sql");
                                 echo file_get_contents("base/course/tables/course_ticket.sql");
 
+                                echo file_get_contents("base/game/tables/game.sql");
                                 echo file_get_contents("base/game/tables/game_meta.sql");
 
                                 echo file_get_contents("base/kitchen/tables/food.sql");
