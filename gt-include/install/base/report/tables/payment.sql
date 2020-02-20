@@ -35,7 +35,9 @@ CREATE TABLE `payment` (
   `pa_price` decimal(10,0) NOT NULL DEFAULT 0,
   `pa_date` datetime NOT NULL,
   `pa_details` text NOT NULL,
-  `pa_type` varchar(15) NOT NULL
+  `pa_type` varchar(15) NOT NULL,
+  `error_code` int(5) DEFAULT NULL,
+  `rrn` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -60,7 +62,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `pa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=849;
+  MODIFY `pa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
