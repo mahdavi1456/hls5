@@ -55,6 +55,8 @@
 											?>
 										</select>
 									</div>
+								</div><br>
+								<div class="row">
                                     <div class="col-md-12 col-sm-12">
                                         <label>توضیحات</label>
                                         <input name="h_details" class="form-control" type="text" placeholder="توضیحات..." value="<?php echo $h_details; ?>" required>

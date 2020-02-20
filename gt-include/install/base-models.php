@@ -85,7 +85,11 @@ include "function.php"; ?>
                                 <pre id="pre">
                                 <?php
                                 echo file_get_contents("base/adjective/tables/adjective.sql");
-
+								
+								echo file_get_contents("base/cost/tables/headlines.sql");
+                                echo file_get_contents("base/cost/tables/costs.sql");
+                                echo file_get_contents("base/cost/tables/bank_account.sql");
+								
                                 echo file_get_contents("base/course/tables/course.sql");
                                 echo file_get_contents("base/course/tables/course_cost.sql");
                                 echo file_get_contents("base/course/tables/course_ticket.sql");

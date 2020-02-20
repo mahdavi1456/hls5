@@ -243,6 +243,13 @@
 									<p>کارگاه ها</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="<?php echo VIEW_URL; ?>cost/list-account.php"
+									class="nav-link <?php if ($basename == 'list-account') echo 'active'; ?>">
+									<i class="nav-icon fa fa-book"></i>
+									<p>حساب های بانکی</p>
+								</a>
+							</li>
 						</ul>
                     </li>
 					<?php 
