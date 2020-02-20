@@ -69,6 +69,15 @@
                                                    type="number" placeholder="صفحه بندی مشتریان...">
                                         </div>
                                     </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-2"><label>شماره ترمینال سامان کیش</label></div>
+                                        <div class="col-md-3">
+                                            <input name="samankish_terminal"
+                                                   value="<?php echo $opt->get_option('samankish_terminal'); ?>" class="form-control"
+                                                   type="text" placeholder="شماره ترمینال سامان کیش...">
+                                        </div>
+                                    </div>
 									<br>
 									<div class="row">
                                         <div class="col-md-2"><label>قوانین مجموعه</label></div>

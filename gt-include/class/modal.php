@@ -344,8 +344,23 @@ class modal
 			</div>
 			<input type="hidden" id="pa_details" value="<?php echo $pa_details; ?>"><br>
 		</div>
+        <?php
+        $opt = new option();
+        $samankish_terminal = $opt->get_option('samankish_terminal');
+        if($samankish_terminal != "") {
+        ?>
+        <div class="col-md-12">
+            <br><div class="alert alert-info">لطفا کارت بکشید...</div>
+            <label>وضعیت تراکنش</label>
+            <textarea name="" placeholder="وضعیت تراکنش" id="status-result" class="text-center form-control" readonly="readonly">
+            </textarea>
+        </div>
+        <?php
+        } ?>
 		<div class="col-12">
-			<br><button id="pay" class="btn btn-success">ثبت پرداخت</button>
+			<input type="hidden" id="error_code" value="0">
+            <input type="hidden" id="rrn" value="0">
+            <br><button id="pay" class="btn btn-success">ثبت پرداخت</button>
 		</div>
 		<div class="col-12">
 			<br><div id="pay-result"></div>
