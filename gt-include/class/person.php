@@ -60,20 +60,40 @@ class person
 
     function get_person_status($p_id)
     {
+		
+		$total_all1 = 0;
+		$total_all2 = 0;
+		$total_all3 = 0;
         $db = new database();
-
-        $bp_total = $db->get_var_query("select sum(pk_price) from package inner join buy_package on package.pk_id = buy_package.pk_id where p_id = $p_id");
+		$res1 = $db->get_select_query("select * from game where p_id = $p_id");
+		if(count($res1) > 0) {
+			foreach($res1 as $row) {
+				$total_all1 += $row['g_total_price'] + $row['g_total_vip_price'] + $row['g_extra_price'] + $row['g_login_price'] + $row['g_total_shop'] - $row['g_offer_price'];
+			}
+		}
+		
+		$res2 = $db->get_select_query("select * from payment where p_id = $p_id");
+		if(count($res2) > 0) {
+			foreach($res2 as $row) {
+				$total_all2 += $row['pa_price'];
+			}
+		}
+		
+		$res3 = $db->get_select_query("select * from factor where p_id = $p_id");
+		if(count($res3) > 0) {
+			foreach($res3 as $row) {
+				$total_all3 += $row['pr_price'];
+			}
+		}
+		
+       /* $bp_total = $db->get_var_query("select sum(pk_price) from package inner join buy_package on package.pk_id = buy_package.pk_id where p_id = $p_id");
         $f_total = $db->get_var_query("select sum(pr_price) from factor where p_id = $p_id and f_status = 1");
         $h_total = $db->get_var_query("select sum(g_price) from game where p_id = $p_id");
-
         $used_total = $bp_total + $f_total + $h_total;
-
         $p_total = $db->get_var_query("select sum(pa_price) from payment where p_id = $p_id");
         $o_total = $db->get_var_query("select sum(pa_offer) from payment where p_id = $p_id");
-
-
-        $t = $p_total - $used_total;
-
+        $t = $p_total - $used_total; */
+		$t = $total_all2 - ($total_all1 + $total_all3);
         return $t;
     }
 

@@ -241,7 +241,7 @@ class game
         <div class="col-md-12">
             <div class="row">
                 <div class="no-print col-4 text-center"><br>
-                    <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#pay_modal">پرداخت</button>
+                    <button id="start-pay" class="btn btn-success btn-lg" data-toggle="modal" data-target="#pay_modal">پرداخت</button>
                 </div>
                 <?php $m->show_modal("pay_modal", "ثبت پرداخت", "pay", $g_id, $total_all_prices - $offer_price + $login_price); ?>
 				

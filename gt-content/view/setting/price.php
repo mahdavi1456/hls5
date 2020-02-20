@@ -114,6 +114,9 @@
 												<option <?php if ($opt->get_option('round_type') == 'chiko') echo 'selected'; ?>
                                                         value="chiko">چیکو
                                                 </option>
+												<option <?php if ($opt->get_option('round_type') == 'melody') echo 'selected'; ?>
+                                                        value="melody">ملودی
+                                                </option>
                                             </select>
                                         </div>
                                     </div>

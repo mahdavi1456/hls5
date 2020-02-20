@@ -61,7 +61,7 @@ if(isset($_POST['set_login'])) {
 	if($check1) {
 		$g_type = $_POST['g_type'];
 		$g_count = $_POST['g_count'];
-		$g_in = jdate('H:i');
+		$g_in = $_POST['g_in'];
 		$g_date = jdate('Y/m/d');
 		$u_id = $_SESSION['user_id'];
 		if($_POST['g_adj'] != "") {
@@ -103,7 +103,7 @@ if(isset($_POST['set_login2'])) {
 	if($check1) {
 		$g_count = $_POST['g_count'];
 		$g_type = $_POST['g_type'];
-		$g_in = jdate('H:i');
+		$g_in = $_POST['g_in'];
 		$g_date = jdate('Y/m/d');
 		$u_id = $_SESSION['user_id'];
 		if($_POST['g_adj'] != "") {

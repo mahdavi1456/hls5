@@ -110,7 +110,7 @@ class modal
 					?>
 				</select-->
 			</div>
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <label>تعداد</label>
                 <select id="g_count" name="g_count" class="form-control">
                     <option value="1">1</option>
@@ -125,7 +125,11 @@ class modal
                     <option value="10">10</option>
                 </select>
             </div>
-            <div class="col-md-3">
+			<div class="col-md-6">
+                <label>ساعت ورود</label>
+                <input id="g_in" name="g_in" class="form-control" value="<?php echo jdate('H:i'); ?>" type="text" placeholder="ساعت ورود...">
+            </div>
+            <div class="col-md-6">
                 <label>نوع ورود</label>
                 <select id="g_type" name="g_type" class="form-control">
                     <option value="خانه بازی">خانه بازی</option>
@@ -178,7 +182,7 @@ class modal
 		<input type="hidden" id="p_regdate" value="<?php echo jdate('Y-m-d'); ?>">
 		<hr>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label>نوع ورود</label>
                 <select id="g_type1" name="g_type1" class="form-control">
                     <option value="خانه بازی">خانه بازی</option>
@@ -186,7 +190,11 @@ class modal
                     <option value="مهدکودک ساعتی">مهدکودک ساعتی</option>
                 </select>
             </div>
-			<div class="col-md-4 text-center">
+			<div class="col-md-6">
+                <label>ساعت ورود</label>
+                <input id="g_in" name="g_in" class="form-control" value="<?php echo jdate('H:i'); ?>" type="text" placeholder="ساعت ورود...">
+            </div>
+			<div class="col-md-6 text-center">
                 <label>ثبت لیست امانتی ها</label>
                 <select id="g_adj1" class="form-control select2" multiple="multiple"
                         style="width: 100%">
@@ -199,7 +207,7 @@ class modal
                     ?>
                 </select>
             </div>
-			 <div class="col-md-4">
+			 <div class="col-md-6">
                 <label>تعداد</label>
                 <select id="g_count1" name="g_count1" class="form-control">
                     <option value="1">1</option>
@@ -336,8 +344,23 @@ class modal
 			</div>
 			<input type="hidden" id="pa_details" value="<?php echo $pa_details; ?>"><br>
 		</div>
+        <?php
+        $opt = new option();
+        $samankish_terminal = $opt->get_option('samankish_terminal');
+        if($samankish_terminal != "") {
+        ?>
+        <div class="col-md-12">
+            <br><div class="alert alert-info">لطفا کارت بکشید...</div>
+            <label>وضعیت تراکنش</label>
+            <textarea name="" placeholder="وضعیت تراکنش" id="status-result" class="text-center form-control" readonly="readonly">
+            </textarea>
+        </div>
+        <?php
+        } ?>
 		<div class="col-12">
-			<br><button id="pay" class="btn btn-success">ثبت پرداخت</button>
+			<input type="hidden" id="error_code" value="0">
+            <input type="hidden" id="rrn" value="0">
+            <br><button id="pay" class="btn btn-success">ثبت پرداخت</button>
 		</div>
 		<div class="col-12">
 			<br><div id="pay-result"></div>

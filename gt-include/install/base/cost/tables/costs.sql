@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2020 at 11:37 AM
+-- Generation Time: Feb 20, 2020 at 09:20 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -25,44 +25,39 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Table structure for table `costs`
 --
 
-CREATE TABLE `payment` (
-  `pa_id` int(11) NOT NULL,
-  `u_id` int(11) DEFAULT NULL,
-  `p_id` int(11) NOT NULL,
-  `pa_price` decimal(10,0) NOT NULL DEFAULT 0,
-  `pa_date` datetime NOT NULL,
-  `pa_details` text NOT NULL,
-  `pa_type` varchar(15) NOT NULL,
-  `error_code` int(5) DEFAULT NULL,
-  `rrn` int(11) DEFAULT NULL
+CREATE TABLE `costs` (
+  `c_id` int(11) NOT NULL,
+  `h_id` int(11) NOT NULL,
+  `c_price` double NOT NULL,
+  `ba_id` int(11) NOT NULL,
+  `c_date` date DEFAULT NULL,
+  `c_time` time DEFAULT NULL,
+  `u_id` int(11) NOT NULL,
+  `c_details` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `payment`
---
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `payment`
+-- Indexes for table `costs`
 --
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`pa_id`);
+ALTER TABLE `costs`
+  ADD PRIMARY KEY (`c_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT for table `costs`
 --
-ALTER TABLE `payment`
-  MODIFY `pa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+ALTER TABLE `costs`
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

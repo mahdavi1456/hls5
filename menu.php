@@ -137,7 +137,7 @@
                             </li>
                         </ul>
                     </li>
-					  <li class="nav-item has-treeview <?php if ($basename == 'food' || $basename == 'food-plan' || $basename == 'food-reserv' ) echo 'menu-open'; ?>">
+					<li class="nav-item has-treeview <?php if ($basename == 'food' || $basename == 'food-plan' || $basename == 'food-reserv' ) echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
@@ -162,6 +162,29 @@
                                 <a href="<?php echo VIEW_URL; ?>kitchen/food-reserv.php" class="nav-link <?php if($basename == 'food-reserv') echo 'active'; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>رزرو غذا</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+					<li class="nav-item has-treeview <?php if ($basename == 'headlines' || $basename == 'list-cost' ) echo 'menu-open'; ?>">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-database"></i>
+                            <p>
+                                هزینه ها
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>cost/headlines.php" class="nav-link <?php if($basename == 'headlines') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>سرفصل ها</p>
+                                </a>
+                            </li>
+							<li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>cost/list-cost.php" class="nav-link <?php if($basename == 'list-cost') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>مدیریت هزینه ها</p>
                                 </a>
                             </li>
                         </ul>
@@ -218,6 +241,13 @@
 									class="nav-link <?php if ($basename == 'course') echo 'active'; ?>">
 									<i class="nav-icon fa fa-book"></i>
 									<p>کارگاه ها</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?php echo VIEW_URL; ?>cost/list-account.php"
+									class="nav-link <?php if ($basename == 'list-account') echo 'active'; ?>">
+									<i class="nav-icon fa fa-book"></i>
+									<p>حساب های بانکی</p>
 								</a>
 							</li>
 						</ul>
