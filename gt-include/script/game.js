@@ -16,12 +16,14 @@ $(document).ready(function () {
             g_adj = "";
         var g_type = $('#g_type').find('option:selected').val();
         var g_count = $('#g_count').find('option:selected').val();
+		var g_in = $('#g_in').val();
         $.post("gt-include/script/game.php", {
             set_login: 1,
             p_code:p_code,
 			p_id: p_id,
             g_type: g_type,
             g_count: g_count,
+			g_in: g_in,
             g_adj: g_adj
         }, function (data) {
 			if (data == "ok") {
@@ -43,6 +45,7 @@ $(document).ready(function () {
         var g_type = $('#g_type1').find('option:selected').val();
 		var g_count = $('#g_count1').find('option:selected').val();
 		var g_adj = $('#g_adj1').val();
+		var g_in = $('#g_in').val();
 		if (g_adj == "")
             g_adj = "";
 		$.post("gt-include/script/game.php", {
@@ -56,6 +59,7 @@ $(document).ready(function () {
 			p_regdate :p_regdate,
 			g_type :g_type ,
 			g_count : g_count,
+			g_in :g_in ,
 			g_adj : g_adj
         }, function (data) {
 			if (data == "ok") {

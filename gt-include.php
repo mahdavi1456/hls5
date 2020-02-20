@@ -25,6 +25,7 @@ include INC_DIR . "class/sms.php";
 
 include INC_DIR . "class/option.php";
 
+include INC_DIR . "class/cost.php";
 include INC_DIR . "class/product.php";
 include INC_DIR . "class/factor.php";
 include INC_DIR . "class/user.php";
