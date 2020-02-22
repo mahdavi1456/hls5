@@ -19,6 +19,10 @@
 <script src="<?php echo INC_URL; ?>script/sms.js"></script>
 <script src="<?php echo INC_URL; ?>script/user.js"></script>
 <script src="<?php echo INC_URL; ?>script/course.js"></script>
+<script src="<?php echo INC_URL; ?>script/FormatNumber.js"></script>
+<script src="<?php echo INC_URL; ?>script/buy.js"></script>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         $(".datepicker").persianDatepicker();

@@ -189,10 +189,50 @@
                             </li>
                         </ul>
                     </li>
+					<li class="nav-item has-treeview <?php if ($basename == 'reg-buy' || $basename == 'list-buy' ) echo 'menu-open'; ?>">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-database"></i>
+                            <p>
+                                فاکتور خرید
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>buy/reg-buy.php" class="nav-link <?php if($basename == 'reg-buy') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>ثبت فاکتور</p>
+                                </a>
+                            </li>
+							<li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>buy/list-buy.php" class="nav-link <?php if($basename == 'list-buy') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>لیست فاکتورها</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+					<li class="nav-item has-treeview <?php if ($basename == 'list-factor') echo 'menu-open'; ?>">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-database"></i>
+                            <p>
+                                فاکتور فروش
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>factor/list-factor.php" class="nav-link <?php if($basename == 'list-factor') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>فروش آزاد</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 					<?php
 					} ?>
                     <li class="nav-header">تعاریف</li>
-					<li class="nav-item has-treeview <?php if ($basename == 'person' || $basename == 'product' || $basename == 'package' || $basename == 'adjective' || $basename == 'offer' || $basename == 'course') echo 'menu-open'; ?>">
+					<li class="nav-item has-treeview <?php if ($basename == 'person' || $basename == 'supplier' || $basename == 'product' || $basename == 'package' || $basename == 'adjective' || $basename == 'offer' || $basename == 'course') echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-list"></i>
                             <p>
@@ -206,6 +246,13 @@
 								   class="nav-link <?php if ($basename == 'person') echo 'active'; ?>">
 									<i class="nav-icon fa fa-user"></i>
 									<p>اشخاص</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?php echo VIEW_URL; ?>person/supplier.php"
+								   class="nav-link <?php if ($basename == 'supplier') echo 'active'; ?>">
+									<i class="nav-icon fa fa-user"></i>
+									<p>تامین کننده ها</p>
 								</a>
 							</li>
 							<li class="nav-item">

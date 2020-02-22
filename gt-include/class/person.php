@@ -159,6 +159,7 @@ class person
             </div>
         </div><br>
 		<input type="hidden" name="u_id" value="<?php echo $u_id; ?>" >
+		<input type="hidden" name="p_type" value="مشتری" >
         <div class="row">
             <div class="col-md-12 text-center">
                 <button name="add-person" class="btn btn-success add-person">ثبت شخص</button>
