@@ -32,7 +32,7 @@
 						<?php 
 					if($u_level == "مدیر"){ ?>
                     <li class="nav-header">عملیات</li>
-                    <li class="nav-item has-treeview <?php if ($basename == 'fullday' || $basename == 'fullpay' || $basename == 'fullfactor' || $basename == 'person-report' || $basename == 'report-reserv') echo 'menu-open'; ?>">
+                    <li class="nav-item has-treeview <?php if ($basename == 'fullday' || $basename == 'fullpay' || $basename == 'fullfactor' || $basename == 'person-report' || $basename == 'report-reserv' || $basename == 'report-product') echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
@@ -69,6 +69,12 @@
                                 <a href="<?php echo VIEW_URL; ?>report/report-reserv.php" class="nav-link <?php if($basename == 'report-reserv') echo 'active'; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>گزارش رزرو غذاها</p>
+                                </a>
+                            </li>
+							<li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>report/report-product.php" class="nav-link <?php if($basename == 'report-product') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>گزارش موجودی محصولات</p>
                                 </a>
                             </li>
                         </ul>

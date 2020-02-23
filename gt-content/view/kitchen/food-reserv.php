@@ -58,7 +58,7 @@
 										<label>شخص</label>
 										<select id="p_id" name="p_id" class="form-control select2">
 											<?php
-											$res = $db->get_select_query("select p_id, p_name, p_family from person");
+											$res = $db->get_select_query("select p_id, p_name, p_family from person where p_type = 'مشتری' ");
 											if(count($res) > 0) {
 												foreach($res as $row) {
 													?>

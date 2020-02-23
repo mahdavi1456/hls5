@@ -39,6 +39,7 @@ $(document).ready(function () {
 		var p_family = $('#p_family1').val();
 		var p_mobile = $('#p_mobile').val();
 		var p_birth = $('#p_birth').val();
+		var p_type = $('#p_type').val();
 		var p_gender = $('#p_gender').find('option:selected').val();
 		var u_id = $('#u_id').val();
 		var p_regdate = $('#p_regdate').val();
@@ -53,6 +54,7 @@ $(document).ready(function () {
 			p_name :p_name,
 			p_family :p_family,
 			p_mobile :p_mobile,
+			p_type :p_type,
 			p_birth :p_birth,
 			p_gender :p_gender,
 			u_id :u_id,

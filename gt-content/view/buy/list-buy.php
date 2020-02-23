@@ -50,7 +50,7 @@
 										$person = new person();
 										$product = new product();
 										$i = 1;
-										$list = $db->get_select_query("select * from factor_buy");
+										$list = $db->get_select_query("select * from factor_buy order by f_id desc");
 										if(count($list)> 0){
 											foreach($list as $l){
 												$f_id = $l['f_id']; 
@@ -67,8 +67,8 @@
 													<td><?php echo $prime->per_number(number_format($fb_discount)); ?></td>
 													<td><?php echo $prime->per_number($l['f_date']); ?></td>
 													<td>
-														<a  class="btn btn-info btn-sm" href="reg-buy.php?f_id=<?php echo $f_id; ?>&edit=1"><i data-toggle="tooltip" title="ویرایش" class="fa fa-edit"></i></a>
-														<form onSubmit="if(!confirm('آیا از انجام این عملیات اطمینان دارید؟')){return false;}" action="" method="post">
+														<a class="btn btn-info btn-sm" href="reg-buy.php?f_id=<?php echo $f_id; ?>&edit=1"><i data-toggle="tooltip" title="ویرایش" class="fa fa-edit"></i></a>
+														<form class="btn" onSubmit="if(!confirm('آیا از انجام این عملیات اطمینان دارید؟')){return false;}" action="" method="post">
 															<input type="hidden" name="u_id" value="<?php echo $_SESSION['user_id']; ?>">
 															<button name="del-fb" value="<?php echo $l['f_id']; ?>" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></button>
 														</form>

@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-md-4 col-sm-6">
                                         <label>نام بانک</label><span class="necessary"> *</span>
-										<select class="form-control" name="ba_name" id="ba_name">
+										<select class="form-control select2" name="ba_name" id="ba_name">
 											<option value="ملی" <?php if($ba_name == "ملی") { echo 'selected'; } ?> >ملی</option>
 											<option value="صادرات" <?php if($ba_name == "صادرات") { echo 'selected'; } ?>  >صادرات</option>
 											<option value="کشاورزی" <?php if($ba_name == "کشاورزی") { echo 'selected'; } ?> >کشاورزی</option>
@@ -76,8 +76,8 @@
 										</select>
 									</div>
                                     <div class="col-md-4 col-sm-6">
-                                        <label>کد  بانک</label><span class="necessary"> *</span>
-                                        <input name="ba_code" class="form-control" type="text" placeholder="کد بانک..." value="<?php echo $ba_code; ?>" required>
+                                        <label>کد  بانک</label>
+                                        <input name="ba_code" class="form-control" type="text" placeholder="کد بانک..." value="<?php echo $ba_code; ?>">
                                     </div>
 									<div class="col-md-4 col-sm-6">
                                         <label>نام صاحب حساب</label><span class="necessary"> *</span>
@@ -94,8 +94,8 @@
                                         <input name="ba_branch_name" class="form-control" type="text" placeholder="نام شعبه..." value="<?php echo $ba_branch_name; ?>" required>
                                     </div>
 									 <div class="col-md-4 col-sm-6">
-                                        <label>شماره شعبه</label><span class="necessary"> *</span>
-                                        <input name="ba_branch_number" class="form-control" type="text" placeholder="شماره شعبه..." value="<?php echo $ba_branch_number; ?>" required>
+                                        <label>شماره شعبه</label>
+                                        <input name="ba_branch_number" class="form-control" type="text" placeholder="شماره شعبه..." value="<?php echo $ba_branch_number; ?>">
                                     </div>
 								</div><br>
 								<div class="row">
@@ -198,7 +198,7 @@
                                     <div class="panel panel-success table-responsive">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">جدول حساب های بانکی</h4>
-                                        </div>
+                                        </div></br>
                                         <table class="table table-striped">
                                             <tr>
 												<th>ردیف</th>

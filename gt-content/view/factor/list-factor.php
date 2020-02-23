@@ -19,35 +19,65 @@
                                 <?php
                                 $db = new database();
                                 $prime = new prime();
+								$person = new person();
+								$product = new product();
+								$u_id = $_SESSION['user_id'];
 								
-                                $pr_name = "";
-                                $pr_stock = "";
-                                $pr_buy = "";
-                                $pr_sale = "";
+                                $p_id = "";
+                                $pr_id = "";
+                                $f_count = "";
+                                $pr_price = "";
 
                                 if(isset($_POST['edit-item-table'])){
-                                    $pr_id = $_POST['edit-item-table'];
-                                    $res = $db->get_select_query("select * from product where pr_id = $pr_id");
-                                    $pr_name = $res[0]['pr_name'];
-                                    $pr_stock = $res[0]['pr_stock'];
-                                    $pr_buy = $res[0]['pr_buy'];
-                                    $pr_sale = $res[0]['pr_sale'];
+                                    $f_id = $_POST['edit-item-table'];
+                                    $res = $db->get_select_query("select * from factor where f_id = $f_id");
+                                    $p_id = $res[0]['p_id'];
+                                    $pr_id = $res[0]['pr_id'];
+                                    $f_count = $res[0]['f_count'];
+                                    $pr_price = $res[0]['pr_price'];
                                 }
                                 ?>
                                 <div class="row">
-									<input type="hidden" name="u_id" value="<?php echo ; ?>">
+									<input type="hidden" id="u_id" name="u_id" value="<?php echo $u_id; ?>" >
+									<input type="hidden" id="f_date" name="f_date" value="<?php echo jdate('Y-m-d H:i:s'); ?>">
                                     <div class="col-md-3 col-sm-6">
-                                        <label>انتخاب شخص</label>
-                                        <input name="p_id" class="form-control" type="text">
+                                        <label>شخص</label><span class="necessary"> *</span>
+										<select id="p_id" name="p_id" class="form-control select2">
+											<?php
+											$res = $db->get_select_query("select p_id, p_name, p_family from person where p_type = 'مشتری' ");
+											if(count($res) > 0) {
+												foreach($res as $row) {
+													?>
+													<option value="<?php echo $row['p_id']; ?>" <?php if($p_id == $row['p_id']) { echo 'selected'; } ?> ><?php echo $row['p_name'] . " " . $row['p_family']; ?></option>
+													<?php
+												}
+											}
+											?>
+										</select>
                                     </div>
                                     <div class="col-md-3 col-sm-6">
-                                        <label>انتخاب محصول</label>
-                                        <input name="pr_id" class="form-control" type="text">
+                                        <label>محصول</label><span class="necessary"> *</span>
+										<select id="pr_id" name="pr_id" class="form-control select2">
+										<?php
+										$res = $db->get_select_query("select pr_id, pr_name from product");
+										if(count($res) > 0) {
+											foreach($res as $row) {
+												?>
+												<option value="<?php echo $row['pr_id']; ?>" <?php if($pr_id == $row['pr_id']) { echo 'selected'; } ?> ><?php echo $row['pr_name']; ?></option>
+												<?php
+											}
+										}
+										?>
+										</select>
                                     </div>
                                     <div class="col-md-3 col-sm-6">
-                                        <label>تعداد</label>
-                                        <input name="f_count" class="form-control" type="text" placeholder="تعداد..." value="<?php echo $f_count; ?>">
+                                        <label>تعداد</label><span class="necessary"> *</span>
+                                        <input name="f_count" class="form-control" type="text" placeholder="تعداد..." value="<?php echo $f_count; ?>" required>
                                     </div>
+									<div class="col-md-3 col-sm-6">
+										<label>قیمت کل</label>
+										<input  id="pr_price" type="text" name="pr_price" placeholder="قیمت کل..." class="form-control"  value="<?php echo $pr_price;  ?>" autocomplete="off">
+									</div>
                                 </div><br>
                                 <div class="row">
                                     <div class="col-md-12 text-center">
@@ -64,12 +94,14 @@
                                     <div class="col-md-12">
                                         <?php
                                         if(isset($_POST['set-item'])){
-                                            $pr_name = $_POST['pr_name'];
-                                            $pr_stock = $_POST['pr_stock'];
-                                            $pr_buy = $_POST['pr_buy'];
-                                            $pr_sale = $_POST['pr_sale'];
+                                            $u_id = $_POST['u_id'];
+                                            $f_date = $_POST['f_date'];
+                                            $p_id = $_POST['p_id'];
+											$pr_id = $_POST['pr_id'];
+											$f_count = $_POST['f_count'];
+											$pr_price = $_POST['pr_price'];
 
-                                            $db->ex_query("insert into product(pr_name, pr_stock, pr_buy, pr_sale) values('$pr_name', $pr_stock, $pr_buy, $pr_sale)");
+                                            $db->ex_query("insert into factor(u_id, f_date, p_id, pr_id, f_count, pr_price) values($u_id, '$f_date', $p_id, $pr_id, $f_count, $pr_price)");
                                             ?><br>
                                             <div class="alert alert-success">
                                                 مورد با موفقیت ثبت شد
@@ -83,13 +115,15 @@
 
                                         if(isset($_POST['edit-item']))
                                         {
-                                            $pr_id = $_POST['edit-item'];
-                                            $pr_name = $_POST['pr_name'];
-                                            $pr_stock = $_POST['pr_stock'];
-                                            $pr_buy = $_POST['pr_buy'];
-                                            $pr_sale = $_POST['pr_sale'];
+                                            $f_id = $_POST['edit-item'];
+											$u_id = $_POST['u_id'];
+                                            $f_date = $_POST['f_date'];
+                                            $p_id = $_POST['p_id'];
+											$pr_id = $_POST['pr_id'];
+											$f_count = $_POST['f_count'];
+											$pr_price = $_POST['pr_price'];
 
-                                            $db->ex_query("update product set pr_name = '$pr_name', pr_stock = $pr_stock, pr_buy = $pr_buy, pr_sale = $pr_sale where pr_id = $pr_id");
+                                            $db->ex_query("update factor set u_id = $u_id, f_date = '$f_date', p_id = $p_id, pr_id = $pr_id, f_count = $f_count, pr_price = $pr_price where f_id = $f_id");
                                             ?><br>
                                             <div class="alert alert-warning">
                                                 مورد با موفقیت ویرایش شد
@@ -103,8 +137,8 @@
 
                                         if(isset($_POST['del-item']))
                                         {
-                                            $pr_id = $_POST['del-item'];
-                                            $db->ex_query("delete from product where pr_id = $pr_id");
+                                            $f_id = $_POST['del-item'];
+                                            $db->ex_query("delete from factor where f_id = $f_id");
                                             ?><br>
                                             <div class="alert alert-success">
                                                 مورد با موفقیت حذف شد
@@ -123,32 +157,33 @@
                             <div class="row">
                                     <div class="panel panel-success table-responsive">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title">جدول محصولات</h4>
+                                            <h4 class="panel-title">فاکتورهای فروش امروز</h4>
                                         </div>
                                         <table class="table table-striped">
                                             <tr>
                                                 <th>ردیف</th>
-                                                <th>نام محصول</th>
-                                                <th>موجودی</th>
-                                                <th>قیمت خرید</th>
-                                                <th>قیمت فروش</th>
+                                                <th>شخص</th>
+                                                <th>محصول</th>
+                                                <th>تعداد</th>
+                                                <th>قیمت کل</th>
                                                 <th>مدیریت</th>
                                             </tr>
                                             <?php
                                             $i = 1;
-                                            $res = $db->get_select_query("select * from product");
+											$date = jdate('Y-m-d');
+                                            $res = $db->get_select_query("select * from factor where f_date like '$date%'");
                                             if(count($res)>0){
                                                 foreach($res as $row) { ?>
                                                     <tr>
                                                         <td><?php echo $prime->per_number($i); ?></td>
-                                                        <td><?php echo $row['pr_name']; ?></td>
-                                                        <td><?php echo $prime->per_number($row['pr_stock']); ?></td>
-                                                        <td><?php echo $prime->per_number($row['pr_buy']); ?></td>
-                                                        <td><?php echo $prime->per_number($row['pr_sale']); ?></td>
+                                                        <td><?php echo $person->get_person_name($row['p_id']); ?></td>
+                                                        <td><?php echo $product->get_product_name($row['pr_id']); ?></td>
+                                                        <td><?php echo $prime->per_number($row['f_count']); ?></td>
+                                                        <td><?php echo $prime->per_number(number_format($row['pr_price'])); ?></td>
                                                         <td>
                                                             <form action="" method="post">
-                                                                <button onclick="if(!confirm('آیا از انجام این عملیات اطمینان دارید؟')){return false;}" name="del-item" value="<?php echo $row['pr_id']; ?>" class="btn btn-danger btn-sm">حذف</button>
-                                                                <button name="edit-item-table" value="<?php echo $row['pr_id']; ?>" class="btn btn-info btn-sm">ویرایش</button>
+                                                                <button onclick="if(!confirm('آیا از انجام این عملیات اطمینان دارید؟')){return false;}" name="del-item" value="<?php echo $row['f_id']; ?>" class="btn btn-danger btn-sm">حذف</button>
+                                                                <button name="edit-item-table" value="<?php echo $row['f_id']; ?>" class="btn btn-info btn-sm">ویرایش</button>
                                                             </form>
                                                         </td>
                                                     </tr>

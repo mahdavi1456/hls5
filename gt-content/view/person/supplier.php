@@ -20,6 +20,7 @@
                                 <?php
                                 $db = new database();
                                 $prime = new prime();
+								$aru = new aru();
 								$u_id = $_SESSION['user_id'];
 								
                                 $p_name = "";
@@ -42,22 +43,22 @@
 									<input type="hidden" name="p_regdate" value="<?php echo jdate('Y-m-d'); ?>">
 									<div class="col-md-3">
 										<label>نام</label>
-										<input name="p_name" class="form-control" type="text" placeholder="نام..." value="">
+										<input name="p_name" class="form-control" type="text" placeholder="نام..." value="<?php echo $p_name; ?>">
 									</div>
 									<div class="col-md-3">
 										<label>نام خانوادگی</label>
-										<input id="p_family" name="p_family" class="form-control" type="text" placeholder="نام خانوادگی..." value="" autocomplete="off">
+										<input id="p_family" name="p_family" class="form-control" type="text" placeholder="نام خانوادگی..." value="<?php echo $p_family; ?>" autocomplete="off">
 										<div class="family-search-result"></div>
 									</div>
 									 <div class="col-md-3">
 										<label>موبایل</label>
-										<input name="p_mobile" class="form-control" type="text" placeholder="09xxxxxxxxx" value="">
+										<input name="p_mobile" class="form-control" type="text" placeholder="09xxxxxxxxx" value="<?php echo $p_mobile; ?>">
 									</div>
 									<div class="col-md-3">
 										<label>جنسیت</label>
 										<select name="p_gender" class="form-control">
-											<option value="1">مرد</option>
-											<option value="0">زن</option>
+											<option value="1" <?php if($p_gender == "1"){ echo 'selected'; } ?> >مرد</option>
+											<option value="0" <?php if($p_gender == "0"){ echo 'selected'; } ?> >زن</option>
 										</select>
 									</div>
                                 </div><br>
@@ -132,7 +133,7 @@
                             <div class="row">
                                     <div class="panel panel-success table-responsive">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title">جدول محصولات</h4>
+                                            <h4 class="panel-title">جدول تامین کننده ها</h4>
                                         </div>
                                         <table class="table table-striped">
                                             <tr>
@@ -153,7 +154,7 @@
                                                         <td><?php echo $row['p_name']; ?></td>
                                                         <td><?php echo $row['p_family']; ?></td>
                                                         <td><?php echo $prime->per_number($row['p_mobile']); ?></td>
-                                                        <td><?php echo $row['p_gender']; ?></td>
+                                                        <td><?php  if($row['p_gender'] == "1") { echo "مرد"; } else{ echo "زن"; } ?></td>
                                                         <td>
                                                             <form action="" method="post">
                                                                 <button onclick="if(!confirm('آیا از انجام این عملیات اطمینان دارید؟')){return false;}" name="del-item" value="<?php echo $row['p_id']; ?>" class="btn btn-danger btn-sm">حذف</button>

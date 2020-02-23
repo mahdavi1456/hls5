@@ -45,7 +45,7 @@
                                 <div class="row">
                                     <div class="col-md-4 col-sm-6">
                                         <label>سرفصل</label><span class="necessary"> *</span>
-										<select class="form-control" name="h_id" id="h_id">
+										<select class="form-control select2" name="h_id" id="h_id">
 											<option value="0"></option>
 											<?php
 											$res = 0;
@@ -91,7 +91,7 @@
                                     </div>
 									<div class="col-md-4 col-sm-6">
                                         <label>توضیحات</label>
-                                        <input name="c_details" class="form-control" type="text" placeholder="توضیحات..." value="<?php echo $c_details; ?>" required>
+                                        <input name="c_details" class="form-control" type="text" placeholder="توضیحات..." value="<?php echo $c_details; ?>">
                                     </div>
                                 </div><br>
                                 <div class="row">

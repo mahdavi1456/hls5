@@ -104,7 +104,7 @@
                                         $search_type = $_GET['search_type'];
                                         $order_by = $_GET['order_by'];
                                         $sql_f = "select * from person ";
-                                        $sql_w = "where $search_type like '%" . $s . "%' ";
+                                        $sql_w = "where  p_type = 'مشتری' and $search_type like '%" . $s . "%' ";
                                         $sql_o = "order by $order_by asc ";
                                         $sql_l = "limit $offset, $no_of_records_per_page";
                                         $sql = $sql_f . $sql_w . $sql_o . $sql_l;
@@ -113,7 +113,7 @@
                                         $sql_f_all .= $sql_w;
                                         $total_rows = $db->get_var_query($sql_f_all);
                                     } else {
-                                        $sql = "select * from person order by p_id desc limit $offset, $no_of_records_per_page";
+                                        $sql = "select * from person where p_type = 'مشتری' order by p_id desc limit $offset, $no_of_records_per_page";
 
                                         $sql_f_all = "select count(p_id) from person ";
                                         $total_rows = $db->get_var_query($sql_f_all);

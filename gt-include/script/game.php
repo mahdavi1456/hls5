@@ -93,11 +93,12 @@ if(isset($_POST['set_login2'])) {
 	$p_name = $_POST['p_name'];
 	$p_family = $_POST['p_family'];
 	$p_mobile = $_POST['p_mobile'];
+	$p_type = $_POST['p_type'];
 	$p_birth = $_POST['p_birth'];
 	$p_gender = $_POST['p_gender'];
 	$u_id = $_POST['u_id'];
 	$p_regdate = $_POST['p_regdate'];
-	$sql1 = "insert into person(p_name, p_family, p_mobile, p_birth, p_gender, u_id, p_regdate) values('$p_name', '$p_family', '$p_mobile', '$p_birth', $p_gender, $u_id, '$p_regdate')";
+	$sql1 = "insert into person(p_name, p_family, p_mobile, p_type, p_birth, p_gender, u_id, p_regdate) values('$p_name', '$p_family', '$p_mobile','$p_type' , '$p_birth', $p_gender, $u_id, '$p_regdate')";
 	$p_id = $db->ex_query($sql1);
 	$check1 = $db->get_var_query("select count(*) from person where p_id = $p_id");
 	if($check1) {

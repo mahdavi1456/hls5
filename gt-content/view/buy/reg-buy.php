@@ -83,8 +83,8 @@
                                 <div class="row">
 									<input type="hidden" name="u_id" value="<?php echo $_SESSION['user_id']; ?>">
                                     <div class="col-md-3 col-sm-6">
-                                        <label>نام تامین کننده</label>
-										<select class="form-control" name="p_id" id="p_id">
+                                        <label>نام تامین کننده</label><span class="necessary"> *</span>
+										<select class="form-control select2" name="p_id" id="p_id">
 											<?php
 											$res = 0;
 											$res = $db->get_select_query("select * from person where p_type= 'تامین کننده' ");
@@ -98,18 +98,18 @@
 										</select>
                                     </div>
                                     <div class="col-md-3 col-sm-6">
-                                        <label>تاریخ</label>
-                                        <input type="text" name="f_date" class="form-control datepicker" value="<?php if(isset($_GET['f_id'])){ echo $f_date; } else{ echo jdate('Y/m/d'); } ?>" placeholder="تاریخ..." autocomplete="off">
+                                        <label>تاریخ</label><span class="necessary"> *</span>
+                                        <input type="text" name="f_date" class="form-control datepicker" value="<?php if(isset($_GET['f_id'])){ echo $f_date; } else{ echo jdate('Y/m/d'); } ?>" placeholder="تاریخ..." autocomplete="off" required>
                                     </div>
                                     <div class="col-md-3 col-sm-6">
-                                        <label>نحوه پرداخت</label>
+                                        <label>نحوه پرداخت</label><span class="necessary"> *</span>
                                        	<select class="form-control" name="f_payment">
 											<option value="نقدی" <?php if(isset($_GET['f_id'])){ if($res1[0]['f_payment'] == 'نقدی') { echo 'selected';} }?> >نقدی</option>
 											<option value="غیر نقدی" <?php if(isset($_GET['f_id'])){ if($res1[0]['f_payment'] == 'غیر نقدی') { echo 'selected';} }?> >غیر نقدی</option>
 										</select>
                                     </div>
 									<div class="col-md-3 col-sm-6">
-										 <label>ارزش افزوده</label>
+										 <label>ارزش افزوده</label><span class="necessary"> *</span>
 										<select class="form-control" name="f_VAT_status">
 											<option value="1" <?php if(isset($_GET['f_id'])){ if($res1[0]['f_VAT_status'] == 1) { echo 'selected';} }?> >دارد</option>
 											<option value="0" <?php if(isset($_GET['f_id'])){ if($res1[0]['f_VAT_status'] == 0) { echo 'selected';} }?> >ندارد</option>
@@ -158,8 +158,8 @@
 								<form method="post" action="" class="form">
 									<div class="row"   id="result">
 										<div class="col-md-4 col-sm-4">
-											<label>نام محصول</label>
-											<select class="form-control" name="pr_id" id="pr_id">
+											<label>نام محصول</label><span class="necessary"> *</span>
+											<select class="form-control select2" name="pr_id" id="pr_id">
 												<?php
 												$res = 0;
 												$res = $db->get_select_query("select * from product");
@@ -173,12 +173,12 @@
 											</select>
 										</div>
 										<div class="col-md-4 col-sm-4">
-											<label>مقدار</label>
-											<input id="fb_quantity" type="text" name="fb_quantity" placeholder="مقدار..." class="form-control"  value="<?php echo $fb_quantity;  ?>" autocomplete="off" required>
+											<label>تعداد/ مقدار</label><span class="necessary"> *</span>
+											<input id="fb_quantity" type="text" name="fb_quantity" onchange="hello();" placeholder="تعداد/ مقدار..." class="form-control"  value="<?php echo $fb_quantity;  ?>" autocomplete="off" required>
 										</div>
 										<div class="col-md-4 col-sm-4">
-											<label>قیمت به ریال</label>
-											<input id="fb_price" type="text" name="fb_price" placeholder="قیمت به ریال..." class="form-control" value="<?php echo $fb_price;  ?>" autocomplete="off" required>
+											<label>قیمت</label><span class="necessary"> *</span>
+											<input id="fb_price" type="text" name="fb_price" onchange="hello();" placeholder="قیمت..." class="form-control" value="<?php echo $fb_price;  ?>" autocomplete="off" required>
 										</div>
 									</div>
 									</br>
@@ -333,14 +333,18 @@
     </div>
 </div>
 <script type="text/javascript">
-	$('#result').mouseover(function(){
-		$('#total_price').val("Loading...");
-		var fb_quantity = $('#fb_quantity').val();
-		var fb_price = $('#fb_price').val();
-		$.post("back1.php", {load_data:1 ,fb_quantity:fb_quantity, fb_price:fb_price}, function(data){
-			$('#total_price').val(data);
-		});
-	});
+	function hello(){
+		var a = document.getElementById('fb_quantity');
+		var fb_quantity = a.value;
+		var b = document.getElementById('fb_price');
+		var fb_price = b.value;
+		if(fb_quantity != "" && fb_price != ""){
+			var t = fb_quantity * fb_price;
+			var o = document.getElementById('total_price');
+			o.value = t;
+		}
+		
+	}
 </script>
 
 <?php include "../../../footer.php"; ?>
