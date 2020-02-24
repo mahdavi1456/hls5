@@ -262,6 +262,7 @@ class price
 		} else {
             $a = $base_price / 60;
 			$b = $a * $total;
+			$b = round($b);
 			$normal_price = $this->round_price($b);
         
 		}

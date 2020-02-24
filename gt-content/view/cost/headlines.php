@@ -176,32 +176,61 @@
                                         </div>
                                         <table class="table table-striped">
                                             <tr>
-                                                <th>ردیف</th>
-												<th>کد سرفصل</th>
-												<th>نام سرفصل</th>
-												<th>سرفصل والد</th>
-												<th>توضیحات</th>
-												<th>مدیریت</th>
+                                                <th colspan="2">ردیف</th>
+												<th colspan="2">کد سرفصل</th>
+												<th colspan="2">نام سرفصل</th>
+												<th colspan="2">سرفصل والد</th>
+												<th colspan="2">توضیحات</th>
+												<th colspan="2">مدیریت</th>
                                             </tr>
                                             <?php
                                             $i = 1;
-                                            $res = $db->get_select_query("select * from headlines");
+                                            $res = $db->get_select_query("select * from headlines where h_code = 0");
                                             if(count($res)>0){
                                                 foreach($res as $row) { ?>
                                                     <tr>
-                                                        <td><?php echo $prime->per_number($i); ?></td>
-                                                        <td><?php echo $prime->per_number($row['h_id']); ?></td>
-                                                        <td><?php echo $prime->per_number($row['h_name']); ?></td>
-                                                        <td><?php $h_code = $cost->get_headlines_name($row['h_code']); echo $prime->per_number($h_code); ?></td>
-                                                        <td><?php echo $prime->per_number($row['h_details']); ?></td>
-                                                        <td>
+                                                        <td colspan="2"><?php echo $prime->per_number($i); ?></td>
+                                                        <td colspan="2"><?php echo $prime->per_number($row['h_id']); ?></td>
+                                                        <td colspan="2"><?php echo $prime->per_number($row['h_name']); ?></td>
+                                                        <td colspan="2"><?php $h_code = $cost->get_headlines_name($row['h_code']); echo $prime->per_number($h_code); ?></td>
+                                                        <td colspan="2"><?php echo $prime->per_number($row['h_details']); ?></td>
+                                                        <td colspan="2">
                                                             <form action="" method="post">
                                                                 <button onclick="if(!confirm('آیا از انجام این عملیات اطمینان دارید؟')){return false;}" name="del-item" value="<?php echo $row['h_id']; ?>" class="btn btn-danger btn-sm">حذف</button>
                                                                 <button name="edit-item-table" value="<?php echo $row['h_id']; ?>" class="btn btn-info btn-sm">ویرایش</button>
                                                             </form>
                                                         </td>
                                                     </tr>
-                                                    <?php
+													<?php
+													$j =  $i + 1;
+													$h_id = $row['h_id'];
+													$res2 = $db->get_select_query("select * from headlines where h_code = $h_id");
+													if(count($res2)>0){
+														foreach($res2 as $row2) { ?>
+															<tr>
+																<td colspan="1"></td>
+																<td colspan="1"><?php echo $prime->per_number($j); ?></td>
+																<td colspan="1"></td>
+																<td colspan="1"><?php echo $prime->per_number($row2['h_id']); ?></td>
+																<td colspan="1"></td>
+																<td colspan="1"><?php echo $prime->per_number($row2['h_name']); ?></td>
+																<td colspan="1"></td>
+																<td colspan="1"><?php $h_code = $cost->get_headlines_name($row2['h_code']); echo $prime->per_number($h_code); ?></td>
+																<td colspan="1"></td>
+																<td colspan="1"><?php echo $prime->per_number($row2['h_details']); ?></td>
+																<td colspan="1"></td>
+																<td colspan="1">
+																	<form action="" method="post">
+																		<button onclick="if(!confirm('آیا از انجام این عملیات اطمینان دارید؟')){return false;}" name="del-item" value="<?php echo $row2['h_id']; ?>" class="btn btn-danger btn-sm">حذف</button>
+																		<button name="edit-item-table" value="<?php echo $row2['h_id']; ?>" class="btn btn-info btn-sm">ویرایش</button>
+																	</form>
+																</td>
+															</tr>
+															<?php
+															$j++;
+														}
+														$i =  $j - 1;
+													}
                                                     $i++;
                                                 }
                                             } else { ?>

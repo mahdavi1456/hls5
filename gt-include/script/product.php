@@ -25,7 +25,7 @@ if (isset($_POST['set_pro_to_cart'])) {
 
     if ($pr_stock > 0) {
         $pr_stock--;
-        $db->ex_query("update product set pr_stock = $pr_stock where pr_id = $pr_id");
+        //$db->ex_query("update product set pr_stock = $pr_stock where pr_id = $pr_id");
 
         $db->ex_query("insert into factor(p_id, pr_id, f_count, pr_price, f_date) values($p_id, $pr_id, $f_count, $pr_price, '$f_date')");
 
@@ -44,7 +44,7 @@ if(isset($_POST['remove_from_factor'])) {
     $pid = $_POST['pid'];
     $pr_stock = $db->get_var_query("select pr_stock from product where pr_id = $pid");
     $pr_stock++;
-    $db->ex_query("update product set pr_stock = $pr_stock where pr_id = $pid");
+    //$db->ex_query("update product set pr_stock = $pr_stock where pr_id = $pid");
 
     $db->ex_query("delete from factor where f_id = $fid");
     $factor->shop_factor($pid);
@@ -56,7 +56,7 @@ if(isset($_POST['remove_from_factor_regular'])) {
     $pid = $_POST['pid'];
     $pr_stock = get_var_query("select pr_stock from product where pr_id = $pid");
     $pr_stock++;
-    ex_query("update product set pr_stock = $pr_stock where pr_id = $pid");
+    //ex_query("update product set pr_stock = $pr_stock where pr_id = $pid");
     ex_query("delete from factor where f_id = $fid");
     load_light_factor_regular($pid);
     exit();

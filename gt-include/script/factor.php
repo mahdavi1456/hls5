@@ -45,7 +45,7 @@ if(isset($_POST['set_pro_to_cart_regular'])) {
 
     if($pr_stock > 0) {
         $pr_stock--;
-        ex_query("update product set pr_stock = $pr_stock where pr_id = $pr_id");
+        //ex_query("update product set pr_stock = $pr_stock where pr_id = $pr_id");
 
         ex_query("insert into factor(p_id, pr_id, f_count, pr_price, f_date, u_id) values($p_id, $pr_id, $f_count, $pr_price, '$f_date', $u_id)");
 
