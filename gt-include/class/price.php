@@ -5,12 +5,12 @@ class price
 
     public function round_price($num)
     {
-		$num_new = $num % 100;
-		if($num_new < 50) {
+		$num_new = $num % 1000;
+		if($num_new < 500) {
 			$num = $num - $num_new;
 		}
 		else {
-			$num_new = 100 - $num_new;
+			$num_new = 1000 - $num_new;
 			$num = $num + $num_new;
 			
 		}
@@ -287,6 +287,7 @@ class price
 		} else {
 			$a = $base_price / 60;
 			$b = $a * $total_vip;
+			$b = round($b);
             $vip_price = $this->round_price($b);
 			
 		}

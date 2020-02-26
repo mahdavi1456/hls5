@@ -11,7 +11,7 @@ if(isset($_POST['search_person'])) {
 	$pr = new prime();
     
 	$p_family = $_POST['p_family'];
-	$sql = "select p_id, p_name, p_family, p_mobile from person where p_family like '%" . $p_family . "%' order by p_id desc";
+	$sql = "select p_id, p_name, p_family, p_mobile from person where p_family like '%" . $p_family . "%' or p_name like '%" . $p_family . "%' order by p_id desc";
 	$res = $db->get_select_query($sql);
 	if(count($res) > 0) { ?>
 		<p class="hide-person-item"><b>بستن پیشنهادات</b></p>

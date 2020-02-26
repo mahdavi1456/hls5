@@ -32,7 +32,7 @@
 						<?php 
 					if($u_level == "مدیر"){ ?>
                     <li class="nav-header">عملیات</li>
-                    <li class="nav-item has-treeview <?php if ($basename == 'fullday' || $basename == 'fullpay' || $basename == 'fullfactor' || $basename == 'person-report' || $basename == 'report-reserv' || $basename == 'report-product') echo 'menu-open'; ?>">
+                    <li class="nav-item has-treeview <?php if ($basename == 'fullday' || $basename == 'fullpay' || $basename == 'fullfactor' || $basename == 'person-report' || $basename == 'report-reserv' || $basename == 'report-product' || $basename == 'report-debtor') echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
@@ -75,6 +75,12 @@
                                 <a href="<?php echo VIEW_URL; ?>report/report-product.php" class="nav-link <?php if($basename == 'report-product') echo 'active'; ?>">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>گزارش موجودی محصولات</p>
+                                </a>
+                            </li>
+							<li class="nav-item">
+                                <a href="<?php echo VIEW_URL; ?>report/report-debtor.php" class="nav-link <?php if($basename == 'report-debtor') echo 'active'; ?>">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>گزارش بدهکاران</p>
                                 </a>
                             </li>
                         </ul>
@@ -238,7 +244,7 @@
 					<?php
 					} ?>
                     <li class="nav-header">تعاریف</li>
-					<li class="nav-item has-treeview <?php if ($basename == 'person' || $basename == 'supplier' || $basename == 'product' || $basename == 'package' || $basename == 'adjective' || $basename == 'offer' || $basename == 'course') echo 'menu-open'; ?>">
+					<li class="nav-item has-treeview <?php if ($basename == 'person' || $basename == 'supplier' || $basename == 'product' || $basename == 'package' || $basename == 'adjective' || $basename == 'offer' || $basename == 'course' || $basename == 'list-account' || $basename == 'list-device') echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-list"></i>
                             <p>
@@ -301,6 +307,13 @@
 									class="nav-link <?php if ($basename == 'list-account') echo 'active'; ?>">
 									<i class="nav-icon fa fa-book"></i>
 									<p>حساب های بانکی</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?php echo VIEW_URL; ?>cost/list-device.php"
+								   class="nav-link <?php if ($basename == 'list-device') echo 'active'; ?>">
+									<i class="nav-icon fa fa-bookmark"></i>
+									<p>دارایی ها</p>
 								</a>
 							</li>
 						</ul>

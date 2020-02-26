@@ -232,17 +232,23 @@ class modal
     }
 	
     public function shop_modal($p_id)
-    {
-        $db = new database();
-
-        $items = $db->get_select_query("select * from product");
-        foreach ($items as $item) { ?>
-            <button style="margin-bottom: 5px;" data-pid="<?php echo $p_id; ?>"
-                    class="btn btn-warning btn-lg set-pro-to-cart"
-                    value="<?php echo $item['pr_id']; ?>"><?php echo $item['pr_name']; ?></button>
-            <?php
-        } ?>
-        <hr>
+    { ?>
+		<div class="input-group-append">
+			<input data-pid="<?php echo $p_id; ?>"  class="form-control shop-search" value="<?php echo ""; ?>" type="text" placeholder="جستجوی محصول...">
+		</div>
+		<hr>
+        <div class="shop-search-result">
+		<?php
+		$db = new database();
+		$items = $db->get_select_query("select * from product");
+		foreach ($items as $item) { ?>
+			<button style="margin-bottom: 5px;" data-pid="<?php echo $p_id; ?>"
+				class="btn btn-warning btn-lg set-pro-to-cart"
+				value="<?php echo $item['pr_id']; ?>"><?php echo $item['pr_name']; ?></button>
+			<?php
+		} ?>
+		</div>
+		<hr>
         <div id="set-factor-result<?php echo $p_id; ?>"></div>
         <?php
     }
@@ -291,9 +297,9 @@ class modal
             <option <?php if ($sel == 4) echo "selected"; ?> value="4">4</option>
             <option <?php if ($sel == 5) echo "selected"; ?> value="5">5</option>
             <option <?php if ($sel == 6) echo "selected"; ?> value="6">6</option>
-            <option <?php if ($sel == 7) echo "selected"; ?> value="8">7</option>
-            <option <?php if ($sel == 8) echo "selected"; ?> value="9">8</option>
-            <option <?php if ($sel == 9) echo "selected"; ?> value="10">9</option>
+            <option <?php if ($sel == 7) echo "selected"; ?> value="7">7</option>
+            <option <?php if ($sel == 8) echo "selected"; ?> value="8">8</option>
+            <option <?php if ($sel == 9) echo "selected"; ?> value="9">9</option>
             <option <?php if ($sel == 10) echo "selected"; ?> value="10">10</option>
         </select>
         <?php

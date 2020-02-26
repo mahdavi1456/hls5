@@ -12,12 +12,20 @@ $(document).ready(function () {
         });
     });
 
-    $('.set-pro-to-cart').click(function () {
+	$(document.body).on('click', '.set-pro-to-cart', function () {
         var p_id = $(this).data('pid');
         var pr_id = $(this).val();
         $('#set-factor-result' + p_id).html("<i class='fa fa-spinner fa-spin'></i>");
         $.post("gt-include/script/product.php", {set_pro_to_cart: 1, p_id: p_id, pr_id: pr_id}, function (data) {
             $('#set-factor-result' + p_id).html(data);
+        });
+    });
+	
+	$('.shop-search').keyup(function () {
+        var p_id = $(this).data('pid');
+		var search = $(this).val();
+        $.post("gt-include/script/product.php", {set_search: 1, p_id: p_id, search: search}, function (data) {
+            $('.shop-search-result').html(data);
         });
     });
 

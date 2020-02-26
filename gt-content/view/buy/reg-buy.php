@@ -174,11 +174,11 @@
 										</div>
 										<div class="col-md-4 col-sm-4">
 											<label>تعداد/ مقدار</label><span class="necessary"> *</span>
-											<input id="fb_quantity" type="text" name="fb_quantity" onchange="hello();" placeholder="تعداد/ مقدار..." class="form-control"  value="<?php echo $fb_quantity;  ?>" autocomplete="off" required>
+											<input id="fb_quantity" type="text" name="fb_quantity" onchange="total();" placeholder="تعداد/ مقدار..." class="form-control"  value="<?php echo $fb_quantity;  ?>" autocomplete="off" required>
 										</div>
 										<div class="col-md-4 col-sm-4">
 											<label>قیمت</label><span class="necessary"> *</span>
-											<input id="fb_price" type="text" name="fb_price" onchange="hello();" placeholder="قیمت..." class="form-control" value="<?php echo $fb_price;  ?>" autocomplete="off" required>
+											<input id="fb_price" type="text" name="fb_price" onchange="total();" placeholder="قیمت..." class="form-control" value="<?php echo $fb_price;  ?>" autocomplete="off" required>
 										</div>
 									</div>
 									</br>
@@ -333,7 +333,7 @@
     </div>
 </div>
 <script type="text/javascript">
-	function hello(){
+	function total(){
 		var a = document.getElementById('fb_quantity');
 		var fb_quantity = a.value;
 		var b = document.getElementById('fb_price');

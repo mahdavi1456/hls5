@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2020 at 01:24 PM
+-- Generation Time: Feb 26, 2020 at 01:22 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -25,36 +25,38 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `offer`
+-- Table structure for table `device`
 --
 
-CREATE TABLE `offer` (
-  `o_id` int(11) NOT NULL COMMENT 'کد ردیف',
-  `o_code` varchar(70) NOT NULL COMMENT 'کد تخفیف',
-  `o_type` varchar(5) NOT NULL COMMENT 'نوع کد',
-  `o_per` int(11) NOT NULL COMMENT 'میزان',
-  `o_details` text NOT NULL COMMENT 'توضیحات'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE `device` (
+  `d_id` int(11) NOT NULL,
+  `u_id` int(11) NOT NULL,
+  `d_name` text NOT NULL,
+  `d_price` double NOT NULL,
+  `ba_id` int(11) NOT NULL,
+  `d_date` date NOT NULL,
+  `d_details` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `offer`
+-- Indexes for table `device`
 --
-ALTER TABLE `offer`
-  ADD PRIMARY KEY (`o_id`);
+ALTER TABLE `device`
+  ADD PRIMARY KEY (`d_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `offer`
+-- AUTO_INCREMENT for table `device`
 --
-ALTER TABLE `offer`
-  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'کد ردیف', AUTO_INCREMENT=12;
+ALTER TABLE `device`
+  MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

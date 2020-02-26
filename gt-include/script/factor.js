@@ -1,5 +1,32 @@
 $(document).ready(function () {
-
+	
+	
+	$(document.body).on('change', '.change-count2' ,function(){
+		var pr_id = $('#pr_id3').find('option:selected').val();
+		var f_count = $('#f_count3').val();
+		var home_url = $('#home-url').val();
+		 $.post(home_url + "gt-include/script/factor.php", {load_price: 1, pr_id: pr_id, f_count: f_count}, function (data) {
+            $('#pr_price3').val(data);
+        });
+    });
+	
+	$(document.body).on('change', '.change-count' ,function(){
+        var f_id = $(this).data('fid');
+		var p_id = $(this).data('pid');
+		var pr_id = $(this).data('prid');
+		var f_count = $('#f_count' + f_id).find('option:selected').val();
+        $.post("gt-include/script/factor.php", {
+            load_count: 1,
+            f_id:f_id,
+			pr_id:pr_id,
+			f_count: f_count
+        }, function (data) {
+			if (data == "ok") {
+                window.location.reload();
+            }
+        });
+    });
+	
     $('.index-load-factor-btn').click(function () {
         var p_id = $(this).data('pid');
         $('#set-factor-result' + p_id).html("در حال پردازش...");

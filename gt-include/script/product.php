@@ -21,9 +21,15 @@ if (isset($_POST['set_pro_to_cart'])) {
     $f_count = 1;
     $pr_price = $db->get_var_query("select pr_sale from product where pr_id = $pr_id");
     $pr_stock = $db->get_var_query("select pr_stock from product where pr_id = $pr_id");
+	$total_all = 0;
+	$pr_buy = 0;
+	$pr_sell = 0;
+	$pr_buy = $db->get_var_query("select sum(fb_quantity) from  factor_buy_body where pr_id = $pr_id");
+	$pr_sell = $db->get_var_query("select sum(f_count) from  factor where pr_id = $pr_id");
+	$total_all = ($pr_stock + $pr_buy) - $pr_sell;
     $f_date = jdate('Y/m/d H:i');
 
-    if ($pr_stock > 0) {
+    if ($total_all > 0) {
         $pr_stock--;
         //$db->ex_query("update product set pr_stock = $pr_stock where pr_id = $pr_id");
 
@@ -35,6 +41,29 @@ if (isset($_POST['set_pro_to_cart'])) {
     }
     exit();
 }
+
+if (isset($_POST['set_search'])) {
+    $db = new database();
+    $factor = new factor();
+
+    $p_id = $_POST['p_id'];
+    $search = $_POST['search'];
+	if($search != ""){
+		$items = $db->get_select_query("select * from product where pr_name like '%" . $search . "%' ");
+	}
+	else {
+		$items = $db->get_select_query("select * from product");
+	}
+	foreach ($items as $item) { ?>
+		<button style="margin-bottom: 5px;" data-pid="<?php echo $p_id; ?>"
+			class="btn btn-warning btn-lg set-pro-to-cart"
+			value="<?php echo $item['pr_id']; ?>"><?php echo $item['pr_name']; ?></button>
+		<?php
+	} ?>
+	<?php
+    exit();
+}
+
 
 if(isset($_POST['remove_from_factor'])) {
     $db = new database();

@@ -86,6 +86,9 @@ include "function.php"; ?>
                                 <?php
                                 echo file_get_contents("base/adjective/tables/adjective.sql");
 								
+								echo file_get_contents("base/buy/tables/factor_buy.sql");
+                                echo file_get_contents("base/buy/tables/factor_buy_body.sql");
+								
 								echo file_get_contents("base/cost/tables/headlines.sql");
                                 echo file_get_contents("base/cost/tables/costs.sql");
                                 echo file_get_contents("base/cost/tables/bank_account.sql");
@@ -93,6 +96,8 @@ include "function.php"; ?>
                                 echo file_get_contents("base/course/tables/course.sql");
                                 echo file_get_contents("base/course/tables/course_cost.sql");
                                 echo file_get_contents("base/course/tables/course_ticket.sql");
+
+								echo file_get_contents("base/device/tables/device.sql");
 
                                 echo file_get_contents("base/game/tables/game.sql");
                                 echo file_get_contents("base/game/tables/game_meta.sql");

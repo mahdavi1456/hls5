@@ -27,11 +27,15 @@
                                 $pr_id = "";
                                 $f_count = "";
                                 $pr_price = "";
+								$p_name = "";
+								$p_family = "";
 
                                 if(isset($_POST['edit-item-table'])){
                                     $f_id = $_POST['edit-item-table'];
                                     $res = $db->get_select_query("select * from factor where f_id = $f_id");
                                     $p_id = $res[0]['p_id'];
+									$p_name = $db->get_var_query("select p_name from person where p_id = $p_id");
+									$p_family = $db->get_var_query("select p_family from person where p_id = $p_id");
                                     $pr_id = $res[0]['pr_id'];
                                     $f_count = $res[0]['f_count'];
                                     $pr_price = $res[0]['pr_price'];
@@ -40,24 +44,15 @@
                                 <div class="row">
 									<input type="hidden" id="u_id" name="u_id" value="<?php echo $u_id; ?>" >
 									<input type="hidden" id="f_date" name="f_date" value="<?php echo jdate('Y-m-d H:i:s'); ?>">
-                                    <div class="col-md-3 col-sm-6">
-                                        <label>شخص</label><span class="necessary"> *</span>
-										<select id="p_id" name="p_id" class="form-control select2">
-											<?php
-											$res = $db->get_select_query("select p_id, p_name, p_family from person where p_type = 'مشتری' ");
-											if(count($res) > 0) {
-												foreach($res as $row) {
-													?>
-													<option value="<?php echo $row['p_id']; ?>" <?php if($p_id == $row['p_id']) { echo 'selected'; } ?> ><?php echo $row['p_name'] . " " . $row['p_family']; ?></option>
-													<?php
-												}
-											}
-											?>
-										</select>
-                                    </div>
+									<div id="login-p-name-container" class="col-md-3 col-sm-6">
+										<label>انتخاب شخص</label>
+										<input type="text" placeholder="سه حرف اول فامیل..." autocomplete="off" id="p_family" value="<?php echo $p_name . " " . $p_family; ?>" class="form-control" style="width: 100%">
+										<div class="family-search-result"></div>
+										<input type="hidden" id="p_id" name="p_id" value="<?php echo $p_id; ?>">
+									</div>
                                     <div class="col-md-3 col-sm-6">
                                         <label>محصول</label><span class="necessary"> *</span>
-										<select id="pr_id" name="pr_id" class="form-control select2">
+										<select id="pr_id3" name="pr_id" class="form-control select2 change-count2">
 										<?php
 										$res = $db->get_select_query("select pr_id, pr_name from product");
 										if(count($res) > 0) {
@@ -72,11 +67,11 @@
                                     </div>
                                     <div class="col-md-3 col-sm-6">
                                         <label>تعداد</label><span class="necessary"> *</span>
-                                        <input name="f_count" class="form-control" type="text" placeholder="تعداد..." value="<?php echo $f_count; ?>" required>
+                                        <input name="f_count" id="f_count3" class="form-control change-count2" type="text" placeholder="تعداد..." value="<?php echo $f_count; ?>" required>
                                     </div>
 									<div class="col-md-3 col-sm-6">
 										<label>قیمت کل</label>
-										<input  id="pr_price" type="text" name="pr_price" placeholder="قیمت کل..." class="form-control"  value="<?php echo $pr_price;  ?>" autocomplete="off">
+										<input  id="pr_price3" type="text" name="pr_price" placeholder="قیمت کل..." class="form-control"  value="<?php echo $pr_price;  ?>" autocomplete="off">
 									</div>
                                 </div><br>
                                 <div class="row">

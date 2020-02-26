@@ -42,20 +42,19 @@
 									<input type="hidden" name="p_type" value="تامین کننده">
 									<input type="hidden" name="p_regdate" value="<?php echo jdate('Y-m-d'); ?>">
 									<div class="col-md-3">
-										<label>نام</label>
-										<input name="p_name" class="form-control" type="text" placeholder="نام..." value="<?php echo $p_name; ?>">
+										<label>نام</label><span class="necessary"> *</span>
+										<input name="p_name" class="form-control" type="text" placeholder="نام..." value="<?php echo $p_name; ?>" required>
 									</div>
 									<div class="col-md-3">
-										<label>نام خانوادگی</label>
-										<input id="p_family" name="p_family" class="form-control" type="text" placeholder="نام خانوادگی..." value="<?php echo $p_family; ?>" autocomplete="off">
-										<div class="family-search-result"></div>
+										<label>نام خانوادگی</label><span class="necessary"> *</span>
+										<input id="p_family" name="p_family" class="form-control" type="text" placeholder="نام خانوادگی..." value="<?php echo $p_family; ?>" required>
 									</div>
 									 <div class="col-md-3">
-										<label>موبایل</label>
-										<input name="p_mobile" class="form-control" type="text" placeholder="09xxxxxxxxx" value="<?php echo $p_mobile; ?>">
+										<label>موبایل</label><span class="necessary"> *</span>
+										<input name="p_mobile" class="form-control" type="text" placeholder="09xxxxxxxxx" value="<?php echo $p_mobile; ?>" required>
 									</div>
 									<div class="col-md-3">
-										<label>جنسیت</label>
+										<label>جنسیت</label><span class="necessary"> *</span>
 										<select name="p_gender" class="form-control">
 											<option value="1" <?php if($p_gender == "1"){ echo 'selected'; } ?> >مرد</option>
 											<option value="0" <?php if($p_gender == "0"){ echo 'selected'; } ?> >زن</option>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2020 at 11:47 AM
+-- Generation Time: Feb 26, 2020 at 01:21 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -33,6 +33,7 @@ CREATE TABLE `person` (
   `u_id` int(11) DEFAULT NULL,
   `p_name` varchar(15) DEFAULT NULL COMMENT 'نام',
   `p_family` varchar(15) DEFAULT NULL COMMENT 'نام خانوادگی',
+  `p_type` varchar(30) NOT NULL DEFAULT 'مشتری' COMMENT 'مشتری یا تامین کننده',
   `p_fname` varchar(15) DEFAULT NULL COMMENT 'نام پدر',
   `p_birth` date DEFAULT NULL COMMENT 'تاریخ تولد',
   `p_code` varchar(15) DEFAULT NULL COMMENT 'کد اشتراک',
@@ -46,10 +47,6 @@ CREATE TABLE `person` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `person`
---
-
---
 -- Indexes for dumped tables
 --
 
@@ -58,6 +55,7 @@ CREATE TABLE `person` (
 --
 ALTER TABLE `person`
   ADD PRIMARY KEY (`p_id`);
+
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -66,7 +64,7 @@ ALTER TABLE `person`
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4804;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
