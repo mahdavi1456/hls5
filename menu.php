@@ -151,7 +151,7 @@
                     </li>
 					<li class="nav-item has-treeview <?php if ($basename == 'food' || $basename == 'food-plan' || $basename == 'food-reserv' ) echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-database"></i>
+							<i class="nav-icon fa fa-coffee"></i>
                             <p>
                                 آشپزخانه
                                 <i class="fa fa-angle-left right"></i>
@@ -180,7 +180,7 @@
                     </li>
 					<li class="nav-item has-treeview <?php if ($basename == 'headlines' || $basename == 'list-cost' ) echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-database"></i>
+							<i class="nav-icon fa fa-money"></i>
                             <p>
                                 هزینه ها
                                 <i class="fa fa-angle-left right"></i>
@@ -203,7 +203,7 @@
                     </li>
 					<li class="nav-item has-treeview <?php if ($basename == 'reg-buy' || $basename == 'list-buy' ) echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-database"></i>
+                            <i class="nav-icon fa fa-shopping-cart"></i>
                             <p>
                                 فاکتور خرید
                                 <i class="fa fa-angle-left right"></i>
@@ -226,7 +226,7 @@
                     </li>
 					<li class="nav-item has-treeview <?php if ($basename == 'list-factor') echo 'menu-open'; ?>">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-database"></i>
+                            <i class="nav-icon fa fa-euro"></i>
                             <p>
                                 فاکتور فروش
                                 <i class="fa fa-angle-left right"></i>
@@ -263,7 +263,7 @@
 							<li class="nav-item">
 								<a href="<?php echo VIEW_URL; ?>person/supplier.php"
 								   class="nav-link <?php if ($basename == 'supplier') echo 'active'; ?>">
-									<i class="nav-icon fa fa-user"></i>
+									<i class="nav-icon fa fa-users"></i>
 									<p>تامین کننده ها</p>
 								</a>
 							</li>
@@ -305,14 +305,14 @@
 							<li class="nav-item">
 								<a href="<?php echo VIEW_URL; ?>cost/list-account.php"
 									class="nav-link <?php if ($basename == 'list-account') echo 'active'; ?>">
-									<i class="nav-icon fa fa-book"></i>
+									<i class="nav-icon fa fa-window-restore"></i>
 									<p>حساب های بانکی</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								<a href="<?php echo VIEW_URL; ?>cost/list-device.php"
 								   class="nav-link <?php if ($basename == 'list-device') echo 'active'; ?>">
-									<i class="nav-icon fa fa-bookmark"></i>
+									<i class="nav-icon fa fa-cubes"></i>
 									<p>دارایی ها</p>
 								</a>
 							</li>
