@@ -162,7 +162,7 @@
 									<b>وضعیت: </b><b <?php if($status < 0) {  ?> class="text-danger" <?php } else { ?> class="text-success" <?php } ?>><?php  $d = $pr->per_number(number_format($status)); echo $d; ?></b>
 								</div>
 								<div class="col-8 text-right">
-									<button data-toggle="modal" type="button" class="btn btn-success btn-lg" data-p_id="<?php echo $p_id; ?>" data-target="#pay_modal<?php echo $p_id; ?>">پرداخت بدهی</button>
+									<button data-toggle="modal" type="button" class="btn btn-success btn-lg" data-p_id="<?php echo $p_id; ?>" data-target="#pay_modal<?php echo $p_id; ?>">پرداخت</button>
 									<button data-toggle="modal" type="button" class="btn btn-primary btn-lg load-set-card" data-p_id="<?php echo $p_id; ?>" data-target="#cardModal<?php echo $p_id; ?>">شارژ اشتراک</button>
 									<button data-toggle="modal" type="button" class="btn btn-warning btn-lg" data-p_id="<?php echo $p_id; ?>" data-target="#edit_Modal<?php echo $p_id; ?>">ویرایش شارژ</button>
 								</div>

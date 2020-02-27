@@ -2,7 +2,7 @@
 class payment
 {
 	
-	public function add_payment($p_id, $pa_price, $pa_details, $pa_type, $error_code, $rrn)
+	public function add_payment($p_id, $pa_price, $pa_details, $pa_type, $error_code=0, $rrn=0)
 	{
 		$db = new database();
 		$u_id = $_SESSION['user_id'];
