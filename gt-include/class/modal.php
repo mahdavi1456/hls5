@@ -179,7 +179,7 @@ class modal
             </div>
         </div><br>
 		<input type="hidden" id="u_id" value="<?php echo $u_id; ?>" >
-		<input type="hidden" name="p_type" value="مشتری" >
+		<input type="hidden" name="p_type" id="p_type" value="مشتری" >
 		<input type="hidden" id="p_regdate" value="<?php echo jdate('Y-m-d'); ?>">
 		<hr>
         <div class="row">
