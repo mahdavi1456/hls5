@@ -67,7 +67,6 @@ class report
 			if($load == 1){
 				if(isset($_GET['search'])) {
 					$g_type = $_GET['g_type'];
-					1
 					if($g_from_date == $g_to_date) {
 						$today = $g_from_date;
 						$sql = "select * from game where g_date like '%$today%' and g_status = 1 order by g_id desc";
