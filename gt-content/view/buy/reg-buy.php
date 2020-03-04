@@ -120,7 +120,7 @@
 											$res = $db->get_select_query("select * from bank_account");
 											if(count($res) > 0){
 												foreach($res as $row){ ?>
-													<option value="<?php echo $row['ba_id']; ?>" ><?php echo $row['ba_account_owner']  . " " . $row['ba_account_number'] . " " . $row['ba_name']; ?></option>
+													<option value="<?php echo $row['ba_id']; ?>" <?php if(isset($_GET['f_id'])){ if($ba_id == $row['ba_id']) { echo 'selected'; } }?> ><?php echo $row['ba_account_owner']  . " " . $row['ba_account_number'] . " " . $row['ba_name']; ?></option>
 												<?php
 												}
 											}

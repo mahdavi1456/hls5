@@ -67,31 +67,7 @@ class report
 			if($load == 1){
 				if(isset($_GET['search'])) {
 					$g_type = $_GET['g_type'];
-					$g_from_date = $prime->eng_number(str_replace('/', '-', $_GET['g_from_date']));
-					$g_to_date = $prime->eng_number(str_replace('/', '-', $_GET['g_to_date']));
-					$myDataArray1 = explode('-', $g_from_date);
-					$myYear1 = $myDataArray1[0];
-					$mymonth1 = $myDataArray1[1]; 
-					$myday1 = $myDataArray1[2];
-					$myDataArray2 = explode('-', $g_to_date);
-					$myYear2 = $myDataArray2[0];
-					$mymonth2 = $myDataArray2[1]; 
-					$myday2 = $myDataArray2[2];
-					
-					if($mymonth1 < 10){
-						$mymonth1 = "0" . $mymonth1;
-					}
-					if($myday1 < 10){
-						$myday1 = "0" . $myday1;
-					}
-					if($mymonth2 < 10){
-						$mymonth2 = "0" . $mymonth2;
-					}
-					if($myday2 < 10){
-						$myday2 = "0" . $myday2;
-					}
-					$g_from_date = $myYear1 . "-" . $mymonth1 . "-" . $myday1;
-					$g_to_date = $myYear2 . "-" . $mymonth2 . "-" . $myday2;
+					1
 					if($g_from_date == $g_to_date) {
 						$today = $g_from_date;
 						$sql = "select * from game where g_date like '%$today%' and g_status = 1 order by g_id desc";
